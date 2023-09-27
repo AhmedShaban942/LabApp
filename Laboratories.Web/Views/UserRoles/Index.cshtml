@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Laboratories.Domain.UserRole>
+
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Roles;
+}
+<hr />
+<hr />
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Roles </strong>
+</h4>
+<hr />
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "UserRoles", null, new { @class = "btn btn-info" })
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Screens, "Create", "ScreenRoles", null, new { @class = "btn btn-info" })
+</p>
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+                <th>
+                    @Laboratories.Web.Resources.General.arName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.enName
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tbody>
+                <tr class="even pointer">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.role_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.role_enName)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = item.role_id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.role_id }, new { @class = "btn btn-info" })
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.role_id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            </tbody>
+
+        }
+
+        </table>
+</div>

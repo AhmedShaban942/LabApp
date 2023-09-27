@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Laboratories.Domain.ScheduleDet>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+
+
+<hr />
+<hr />
+
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.labTable </strong>
+    </h4>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+            <thead>
+                <tr>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.day
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.lessonNum
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.subject
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.lessonNum
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.subject
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.lessonNum
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.subject
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.lessonNum
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.subject
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.lessonNum
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.LabTable.subject
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_day)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_lessonNum1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_subject1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_lessonNum2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_subject2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_lessonNum3)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_subject3)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_lessonNum4)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_subject4)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_lessonNum5)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schd_subject5)
+                    </td>
+                    <td>
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { schd_Id = item.schd_Id, day = item.schd_day }, new { @class = "btn btn-primary", @target = "_blank" })
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+
+        </table>
+
+
+        <p>
+
+            @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+        </p>

@@ -1,0 +1,102 @@
+﻿@model Laboratories.Domain.StudyCourse
+
+@{
+    ViewBag.Title = @Laboratories.Web.Resources.General.Edit;
+}
+
+<h2> @Laboratories.Web.Resources.General.Edit</h2>
+
+@using (Html.BeginForm("Edit", "StudyCourses", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 align="center" class="panel-title ">
+            <strong style="text-align:center;color:red">@Laboratories.Web.Resources.StudentRates.studyCourse </strong>
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Laboratories.Web.Resources.General.arName
+            </label>
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cors_arName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cors_arName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Laboratories.Web.Resources.General.enName
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cors_enName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cors_enName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Laboratories.Web.Resources.Item.itm_department
+            </label>
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.cors_department, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.cors_department, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Laboratories.Web.Resources.Item.itm_level
+            </label>
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.cors_level, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.cors_level, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Laboratories.Web.Resources.Item.itm_term
+            </label>
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.cors_term, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.cors_term, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Laboratories.Web.Resources.StudentRates.degree
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cors_degree, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cors_degree, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Laboratories.Web.Resources.StudentRates.rate
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cors_rate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cors_rate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@Laboratories.Web.Resources.General.Edit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</div>

@@ -1,0 +1,111 @@
+﻿@model Laboratories.Domain.Experiments
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Delete;
+}
+
+<hr />
+<hr />
+
+<h3> @Laboratories.Web.Resources.General.delete_</h3>
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.experimentName </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentCourse
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_course.cors_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentType
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_tpye)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentPage
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_page)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentchapter
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_chapter)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentTools
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_tools)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.doingOrNot
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_state)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentTeacherName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_teacher.tech_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentTeacherSignetcher
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_teacherSignature)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Delete" class="btn btn-danger" />
+
+            @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+        </div>
+    }
+</div>

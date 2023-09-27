@@ -1,0 +1,75 @@
+﻿@model Laboratories.Domain.TeacherMovment
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Delete;
+}
+
+<hr />
+<hr />
+
+<h3> @Laboratories.Web.Resources.General.delete_</h3>
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.LabTable.teacherMovment </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.LabTable.teacherName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_Teacher.tech_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.LabTable.lessonCount
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_lessonCount)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.LabTable.lessonCountActual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_lessonCountActual)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.LabTable.weekNumber
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_weekNumber)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.LabTable.monthNumberr
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_monthNumberr)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.General.note
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_note)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Delete" class="btn btn-danger" />
+
+            @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,54 @@
+﻿@model Laboratories.Domain.Course
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+
+
+
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.courses </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cors_arName)
+        </dd>
+
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cors_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentNum
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cors_exprNum)
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_department
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cors_department)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</p>
+

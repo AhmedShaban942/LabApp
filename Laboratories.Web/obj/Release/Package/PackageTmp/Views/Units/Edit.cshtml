@@ -1,0 +1,57 @@
+﻿@model Laboratories.Domain.Unit
+
+@{
+    ViewBag.Title = @Laboratories.Web.Resources.General.Edit;
+}
+
+<h2> @Laboratories.Web.Resources.General.Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:red">@Laboratories.Web.Resources.General.Units </strong>
+    </h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.arName</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.unt_arName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.unt_arName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.enName</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.unt_enName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.unt_enName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.isActive</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsAvtive)
+                @Html.ValidationMessageFor(model => model.IsAvtive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Edit" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</div>

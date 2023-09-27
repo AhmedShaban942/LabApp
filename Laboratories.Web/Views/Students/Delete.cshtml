@@ -1,0 +1,117 @@
+﻿@model Laboratories.Domain.Student
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Delete;
+}
+
+<hr />
+<hr />
+
+<h3> @Laboratories.Web.Resources.General.delete_</h3>
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.StudentRates.students </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_schol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_School.sch_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_arName)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.StudentRates.studentId
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_IdentityNumber)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.phon
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_phon)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_email)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_address)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Item.schooldepartment
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_department)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_level
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_level)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.StudentRates.levelRecord
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.std_levelRecord)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.photo
+        </dt>
+
+        <dd>
+            @if (Model.std_image != null)
+            {
+
+                @Html.Raw("<img style=\"width: 70px; height: 70px; \" src=\"data:image/jpeg;base64," + @Convert.ToBase64String(Model.std_image) + "\"  />");
+            }
+        </dd>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="@Laboratories.Web.Resources.General.Delete" class="btn btn-danger" />
+
+                @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+            </div>
+        }
+</div>

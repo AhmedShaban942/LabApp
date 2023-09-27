@@ -1,0 +1,86 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.User>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Users;
+}
+<hr />
+<hr />
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Users </strong>
+</h4>
+
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "Users", null, new { @class = "btn btn-info" })
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Roles, "Index", "UserRoles", null, new { @class = "btn btn-info" })
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Screens, "Create", "ScreenRoles", null, new { @class = "btn btn-info" })
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Schools, "Create", "UserSchools", null, new { @class = "btn btn-info" })
+
+
+</p>
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <tr>
+            @*<th>
+                @Laboratories.Web.Resources.Item.itm_schol
+            </th>*@
+            <th>
+                @Laboratories.Web.Resources.General.arName
+            </th>
+            <th>
+                @Laboratories.Web.Resources.General.enName
+            </th>
+            <th>
+                @Laboratories.Web.Resources.General.role
+            </th>
+            @*<th>
+                    @Laboratories.Web.Resources.General.PassWord
+                </th>*@
+            <th>
+                @Laboratories.Web.Resources.General.photo
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!--<td>-->
+                    @*@Html.DisplayFor(modelItem => item.usr_Schools.sch_arName)*@
+                <!--</td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.usr_arName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usr_enName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usr_Role.role_name)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.usr_pass)
+                    </td>*@
+                <td>
+                    @if (item.usr_image != null)
+                    {
+
+                        @Html.Raw("<img style=\"width: 70px; height: 70px; \" src=\"data:image/jpeg;base64," + @Convert.ToBase64String(item.usr_image) + "\"  />");
+                    }
+
+                    @*<img alt="" src="data:image/jpg;base64,@Convert.ToBase64String(item.sch_image)" />*@
+                </td>
+                <td>
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))

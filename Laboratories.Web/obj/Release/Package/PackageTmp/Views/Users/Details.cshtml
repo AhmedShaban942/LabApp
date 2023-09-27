@@ -1,0 +1,62 @@
+﻿@model Laboratories.Domain.User
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+
+
+<hr />
+<hr />
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Users </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Laboratories.Web.Resources.Item.itm_schol
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.usr_School.sch_arName)
+        </dd>*@
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usr_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usr_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.role
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usr_Role.role_name)
+        </dd>
+
+        @*<dt>
+            @Laboratories.Web.Resources.General.PassWord
+        </dt>
+
+        <dd>
+            
+            @Html.DisplayFor(model => model.usr_pass)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</p>

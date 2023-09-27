@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "CustomReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">@Laboratories.Web.Resources.Report.choisReportType </strong>
+</h4>
+<hr />
+<form class="reportType">
+    
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkCompany" checked value="0">
+        <label class="form-check-label" for="chkCompany">@Laboratories.Web.Resources.General.Company</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkComplexes" value="1">
+        <label class="form-check-label" for="chkComplexes">@Laboratories.Web.Resources.General.Complexes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkSchools" value="1">
+        <label class="form-check-label" for="chkSchools">@Laboratories.Web.Resources.General.Schools</label>
+    </div>
+</form>
+
+
+<div class="form-horizontal">
+
+    <hr />
+
+    <div class="form-group" id="companygrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Company</label>
+        <div class="col-md-10">
+            @Html.DropDownList("company", null, htmlAttributes: new { @class = "form-control selector", @id = "companyid" })
+
+        </div>
+    </div>
+    <div class="form-group" hidden id="complexgrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Complexes</label>
+        <div class="col-md-10">
+            @Html.DropDownList("complex", null, htmlAttributes: new { @class = "form-control", @id = "complexid" })
+
+        </div>
+    
+    </div>
+    <div class="form-group" hidden id="schoolgrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Schools</label>
+        <div class="col-md-10">
+            <select id="schoolid" class="form-control">
+                
+            </select>
+
+        </div>
+    </div>
+
+</div>
+<hr />
+<hr />
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:red">@Laboratories.Web.Resources.General.Reports </strong>
+    </h4>
+    <hr />
+    <form class="reportName">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="itemReprt" checked value="GetItemsCustom">
+            <label class="form-check-label" for="itemReprt">@Laboratories.Web.Resources.Item.itemReprt</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="itemPresent" value="GetPresentItemsCustom">
+            <label class="form-check-label" for="itemPresent">@Laboratories.Web.Resources.Item.itemPresent</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="itemUnAvalable" value="GetUnAvalableItemsCustom">
+            <label class="form-check-label" for="itemUnAvalable">@Laboratories.Web.Resources.Item.itemUnAvalable</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="itemOver" value="GetOverItemsCustom">
+            <label class="form-check-label" for="itemOver">@Laboratories.Web.Resources.Item.itemOver</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="item_wantedRequired" value="GetWantedItemsCustom">
+            <label class="form-check-label" for="item_wantedRequired">@Laboratories.Web.Resources.Report.item_wantedRequired </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="item_wantedCanavalable" value="GetCanAvalableItemsCustom">
+            <label class="form-check-label" for="item_wantedCanavalable">@Laboratories.Web.Resources.Report.item_wantedCanavalable</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="itm_excessiveQty" value="GetExcessiveQtyCustom">
+            <label class="form-check-label" for="itm_excessiveQty">@Laboratories.Web.Resources.Report.excessiveQtyReport</label>
+        </div>
+    </form>
+
+
+</div>
+
+
+<div>
+    <a herf="" class="btn btn-primary" id="print">@Laboratories.Web.Resources.General.download</a>
+</div>
+
+
+@section scripts{
+    <script>
+        var reportName = "GetItemsCustom";
+        var complexName = null;
+        var schoolName = null;
+
+        $("#itemReprt").change(function () {
+            reportName = $("#itemReprt").val()
+        });
+        $("#itemPresent").change(function () {
+            reportName = $("#itemPresent").val()
+        });
+        $("#itemUnAvalable").change(function () {
+            reportName = $("#itemUnAvalable").val()
+        });
+        $("#itemOver").change(function () {
+            reportName = $("#itemOver").val()
+        });
+        $("#item_wantedCanavalable").change(function () {
+            reportName = $("#item_wantedCanavalable").val()
+        });
+        $("#item_wantedRequired").change(function () {
+            reportName = $("#item_wantedRequired").val()
+        });
+        $("#itm_excessiveQty").change(function () {
+            reportName = $("#itm_excessiveQty").val()
+        });
+        $("#chkCompany").change(function () {
+            complexName = null;
+            schoolName = null;
+            $("#schoolgrp").hide();
+            $("#complexgrp").hide();
+            $("#complexid").val(null);
+            $("#schoolid").val(null);
+
+        });
+        $("#chkComplexes").change(function () {
+            complexName = $("#complexid").val();
+            schoolName = null;
+            $("#schoolgrp").hide();
+            $("#complexgrp").show();
+   
+            $("#schoolid").val(null);
+        });
+
+        $("#complexid").change(function () {
+            GetSchools($("#complexid").val());
+        /*    $("#schoolid").val(null);*/
+            complexName = $("#complexid").val();
+        });
+        $("#chkSchools").change(function () {
+            GetSchools($("#companyid").val());
+            complexName = $("#complexid").val();
+            schoolName = $("#schoolid").val();
+            $("#complexgrp").show();
+          
+            $("#schoolgrp").show();
+
+
+        });
+
+
+        $("#schoolid").change(function () {
+            schoolName = $("#schoolid").val();
+        });
+        $("#print").click(function (e) {
+            $("#print").attr('href', '../Report/DownloadCustomData?reportType=' + reportName + '&companyId=' + $("#companyid").val() + '&complexId=' + complexName + '&schoolId=' +schoolName + '');
+
+        });
+
+
+        function GetSchools(complex_Id) {
+            $("#schoolid").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Report/GetSchools?complex_Id=' + complex_Id + '',
+                success: function (data, textStatus, xhr) {
+                    $("#schoolid").append('<option>اختر المدرسة</option>');
+
+                    for (var i in data) {
+                        $("#schoolid").append('<option value="' + data[i].Id + '">' + data[i].sch_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,105 @@
+﻿@{ Layout = null; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/Design/build/images/Logo.ico" type="image/ico" />
+    <title> @Laboratories.Web.Resources.General.LaboratoryUpdate  </title>
+
+
+    <!-- Bootstrap -->
+    <link href="~/Design/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Design/vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Design/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Design/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/Design/build/css/custom.min.css" rel="stylesheet">
+    <link href="~/Design/build/css/DropDownSearch.css" rel="stylesheet" />
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <!-- page content -->
+            <div class="col-md-12">
+                <div class="col-middle">
+                    <div class="text-center text-center">
+
+                        <h2>@Laboratories.Web.Resources.General.selectSchool</h2>
+
+                        <div class="mid_center">
+                            <div class="col-md-12">
+                                <div class="col-md-10 pull-right">
+                                    @Html.DropDownList("UserSchoolsId", null, htmlAttributes: new { @class = "form-control selector",@id= "UserSchoolsId" })
+
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="submit" value="@Laboratories.Web.Resources.General.Save" class="btn btn-primary" id="btn_save" />
+
+                                </div>
+                            </div>
+           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/Design/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Design/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Design/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Design/vendors/nprogress/nprogress.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Design/build/js/custom.min.js"></script>
+
+    <script src="~/Design/build/js/DropDownSearch.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".selector").select2();
+        });
+
+        $("#btn_save").click(function (e) {
+            e.preventDefault();
+
+            var schoolId = $("#UserSchoolsId").val();
+            
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    url: '../Home/SaveSession?schoolId=' + schoolId + ' ',
+                    success: function (data, textStatus, xhr) {
+                        if (data == "0") {
+                            alert('Error in Operation');
+                        }
+                        else {
+
+                            window.location.href = '/Home/Index';
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Error in Operation');
+                    }
+                });
+          
+        });
+    </script>
+</body>
+</html>
+
+
+

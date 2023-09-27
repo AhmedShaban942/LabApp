@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Laboratories.Domain.AppSeting>
+
+
+<h2>Index</h2>
+
+
+<div>
+    @Html.ActionLink("Create New", "Create")
+
+    <input type="text" name="year" id="year" class="form-control" />
+
+    <button id="createNewYear" class="btn btn-primary">@Laboratories.Web.Resources.General.CreateNew</button>
+
+
+</div>
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.companyNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.compelexNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.schoolNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.userNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAvtive)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.companyNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.compelexNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.schoolNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsAvtive)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts{
+
+    <script>
+
+        $("#createNewYear").click(function (e) {
+
+            var newYear = $("#year").val();
+            $.ajax({
+                type: 'Get',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Schools/GenerateNewYear?year=' + newYear + ' ',
+                success: function (data, textStatus, xhr) {
+                    if (data == "0") {
+                        alert("خطأ فى الاضافة ");
+                    }
+                    else
+                        alert(" تم اضافة السنة الجديدة ");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,128 @@
+﻿@model Laboratories.Domain.School
+
+@{
+    ViewBag.Title = @Laboratories.Web.Resources.General.Create;
+}
+
+<h2> @Laboratories.Web.Resources.General.Create</h2>
+@using (Html.BeginForm("Create", "Schools", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:red">@Laboratories.Web.Resources.General.Schools </strong>
+    </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.arName
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sch_arName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sch_arName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.enName
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sch_enName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sch_enName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.phon
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sch_phon, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sch_phon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.email
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sch_email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sch_email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.address
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sch_address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sch_address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.Complexes
+        </label>
+        <div class="col-md-10">
+            @Html.DropDownList("sch_comp_id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.sch_comp_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.schooldepartment
+        </label>
+        <div class="col-md-10">
+
+            @Html.EnumDropDownListFor(model => model.sch_department, htmlAttributes: new { @class = "form-control selector" })
+            @Html.ValidationMessageFor(model => model.sch_department, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.schooltype
+        </label>
+        <div class="col-md-10">
+
+            @Html.EnumDropDownListFor(model => model.sch_type, htmlAttributes: new { @class = "form-control selector" })
+            @Html.ValidationMessageFor(model => model.sch_type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.photo
+        </label>
+        <div class="col-md-10">
+            <input type="file" name="sch_image" />
+      
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.laboratoryRecordName
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sch_laboratoryRecordName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sch_laboratoryRecordName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+   
+ 
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+    </div>

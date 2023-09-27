@@ -1,0 +1,84 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.TeacherMovment>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.LabTable.teacherMovment;
+}
+<hr />
+<hr />
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.LabTable.teacherMovment </strong>
+</h4>
+<hr />
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "TeacherMovments", null, new { @class = "btn btn-info" })
+
+</p>
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+                <th>
+                    @Laboratories.Web.Resources.LabTable.teacherName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.LabTable.lessonCount
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.LabTable.lessonCountActual
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.LabTable.monthNumberr
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.LabTable.weekNumber
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.note
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mov_Teacher.tech_arName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mov_lessonCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mov_lessonCountActual)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mov_monthNumberr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mov_weekNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mov_note)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        @*@Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.Id }, new { @class = "btn btn-info" })*@
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+
+
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

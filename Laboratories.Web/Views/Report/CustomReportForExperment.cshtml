@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "CustomReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">@Laboratories.Web.Resources.Report.choisReportType </strong>
+</h4>
+<hr />
+<form class="reportType">
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkCompany" checked value="0">
+        <label class="form-check-label" for="chkCompany">@Laboratories.Web.Resources.General.Company</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkComplexes" value="1">
+        <label class="form-check-label" for="chkComplexes">@Laboratories.Web.Resources.General.Complexes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkSchools" value="1">
+        <label class="form-check-label" for="chkSchools">@Laboratories.Web.Resources.General.Schools</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkTeatchers" value="1">
+        <label class="form-check-label" for="chkTeatchers">@Laboratories.Web.Resources.General.Teatchers</label>
+    </div>
+</form>
+
+
+<div class="form-horizontal">
+
+    <hr />
+
+    <div class="form-group" id="companygrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Company</label>
+        <div class="col-md-10">
+            @Html.DropDownList("company", null, htmlAttributes: new { @class = "form-control selector", @id = "companyid" })
+
+        </div>
+    </div>
+    <div class="form-group" hidden id="complexgrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Complexes</label>
+        <div class="col-md-10">
+            @Html.DropDownList("complex", null, htmlAttributes: new { @class = "form-control selector", @id = "complexid" })
+
+        </div>
+    </div>
+    <div class="form-group" hidden id="schoolgrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Schools</label>
+        <div class="col-md-10">
+            <select id="schoolid" class="form-control">
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group" hidden id="teachergrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Teatchers</label>
+        <div class="col-md-10">
+            <select id="teacherid" class="form-control">
+            </select>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div>
+    <a herf="" class="btn btn-primary" id="print">@Laboratories.Web.Resources.General.download</a>
+</div>
+
+
+@section scripts{
+    <script>
+        var reportName = "GetItemsCustom";
+        var complexName = null;
+        var schoolName = null;
+
+        $("#itemReprt").change(function () {
+            reportName = $("#itemReprt").val()
+        });
+        $("#itemPresent").change(function () {
+            reportName = $("#itemPresent").val()
+        });
+        $("#itemUnAvalable").change(function () {
+            reportName = $("#itemUnAvalable").val()
+        });
+        $("#itemOver").change(function () {
+            reportName = $("#itemOver").val()
+        });
+        $("#item_wantedCanavalable").change(function () {
+            reportName = $("#item_wantedCanavalable").val()
+        });
+        $("#item_wantedRequired").change(function () {
+            reportName = $("#item_wantedRequired").val()
+        });
+        $("#itm_excessiveQty").change(function () {
+            reportName = $("#itm_excessiveQty").val()
+        });
+        $("#chkCompany").change(function () {
+            complexName = null;
+            schoolName = null;
+            $("#schoolgrp").hide();
+            $("#complexgrp").hide();
+            $("#teachergrp").hide();
+            $("#complexid").val(null);
+            $("#schoolid").val(null);
+
+        });
+        $("#chkComplexes").change(function () {
+            complexName = $("#complexid").val();
+            schoolName = null;
+            $("#schoolgrp").hide();
+            $("#teachergrp").hide();
+            $("#complexgrp").show();
+
+            $("#schoolid").val(null);
+        });
+
+        $("#complexid").change(function () {
+            GetSchools($("#complexid").val());
+            /*    $("#schoolid").val(null);*/
+            complexName = $("#complexid").val();
+        });
+        $("#chkSchools").change(function () {
+            $("#teachergrp").hide();
+            GetSchools($("#companyid").val());
+            complexName = $("#complexid").val();
+            schoolName = $("#schoolid").val();
+            $("#complexgrp").show();
+
+            $("#schoolgrp").show();
+
+
+        });
+
+        $("#chkTeatchers").change(function () {
+          
+            $("#complexgrp").show();
+
+            $("#schoolgrp").show();
+            $("#teachergrp").show();
+            GetSchools($("#complexid").val());
+        });
+
+
+        $("#schoolid").change(function () {
+            schoolName = $("#schoolid").val();
+            GetTeachers($("#schoolid").val());
+            complexName = $("#complexid").val();
+            schoolName = $("#schoolid").val();
+           
+        });
+        $("#print").click(function (e) {
+            $("#print").attr('href', '../Report/DownloadCustomData?reportType=' + reportName + '&companyId=' + $("#companyid").val() + '&complexId=' + complexName + '&schoolId=' + schoolName + '');
+
+        });
+
+
+        function GetSchools(complex_Id) {
+            $("#schoolid").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Report/GetSchools?complex_Id=' + complex_Id + '',
+                success: function (data, textStatus, xhr) {
+                    $("#schoolid").append('<option>اختر المدرسة</option>');
+
+                    for (var i in data) {
+                        $("#schoolid").append('<option value="' + data[i].Id + '">' + data[i].sch_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+
+        function GetTeachers(school_Id) {
+            $("#teacherid").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Report/GetTeachers?school_Id=' + school_Id + '',
+                success: function (data, textStatus, xhr) {
+                    $("#teacherid").append('<option>اختر المعلم</option>');
+
+                    for (var i in data) {
+                        $("#teacherid").append('<option value="' + data[i].Id + '">' + data[i].tech_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,76 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.Teacher>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Teatchers;
+}
+<hr />
+<hr />
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Teatchers </strong>
+</h4>
+<hr />
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "Teachers", null, new { @class = "btn btn-info" })
+
+</p>
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+                <th>
+                    @Laboratories.Web.Resources.General.arName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.enName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.phon
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.email
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.address
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tech_arName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tech_enName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tech_phon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tech_email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tech_address)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            </tbody>
+
+        }
+
+    </table>
+</div>
+<!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))

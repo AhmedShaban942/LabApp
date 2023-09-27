@@ -1,0 +1,104 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.Experiments>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.experimentName;
+}
+
+<hr />
+<hr />
+<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.Experiment.experimentUnPresent </strong>
+</h2>
+
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.download, "DownloadNotDone", "Experiments", null, new { @class = "btn btn-info" })
+
+</p>
+<hr />
+<hr />
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <tr>
+            <th>
+                @Laboratories.Web.Resources.Experiment.experimentCourse
+            </th>
+            <th>
+                @Laboratories.Web.Resources.General.arName
+            </th>
+            <th>
+                @Laboratories.Web.Resources.General.enName
+            </th>
+            <th>
+                @Laboratories.Web.Resources.Experiment.experimentType
+            </th>
+            <th>
+                @Laboratories.Web.Resources.Experiment.experimentPage
+            </th>
+            <th>
+                @Laboratories.Web.Resources.Experiment.experimentchapter
+            </th>
+            <th>
+                @Laboratories.Web.Resources.Experiment.experimentTools
+            </th>
+            <th>
+                @Laboratories.Web.Resources.Experiment.doingOrNot
+            </th>
+        
+            <th>
+                @Laboratories.Web.Resources.Experiment.experimentTeacherName
+            </th>
+            <th>
+                @Laboratories.Web.Resources.Experiment.experimentTeacherSignetcher
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_course.cors_arName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_arName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_enName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_tpye)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_page)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_chapter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_tools)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_state)
+        </td>
+   
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_teacher.tech_arName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expr_teacherSignature)
+        </td>
+
+
+    </tr>
+        }
+
+    </table>
+</div>
+<br />
+<!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("GetNotDone",
+        new { page }))

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Laboratories.Domain.Company>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Company;
+}
+<hr />
+<hr />
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Company </strong>
+</h4>
+<hr />
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "Companies", null, new { @class = "btn btn-info" })
+
+</p>
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+                    <th>
+                        @Laboratories.Web.Resources.General.arName
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.General.enName
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.General.phon
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.General.email
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.General.address
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.General.photo
+                    </th>
+                  
+
+
+                    <th></th>
+                </tr>
+            </thead>
+
+
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr class="even pointer">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.com_arName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.com_enName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.com_phon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.com_email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.com_address)
+                        </td>
+                        <td>
+                            @if (item.com_image != null)
+                            {
+
+                                @Html.Raw("<img style=\"width: 70px; height: 70px; \" src=\"data:image/jpeg;base64," + @Convert.ToBase64String(item.com_image) + "\"  />");
+                            }
+
+                       </td>
+                     
+                        <td>
+                            @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                            @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                </tbody>
+
+            }
+
+        </table>
+    </div>

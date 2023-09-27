@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Laboratories.Domain.ScheduleDet>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Delete;
+}
+
+
+<hr />
+<hr />
+
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.labTable </strong>
+</h4>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            @Laboratories.Web.Resources.LabTable.day
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.lessonNum
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.subject
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.lessonNum
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.subject
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.lessonNum
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.subject
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.lessonNum
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.subject
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.lessonNum
+        </th>
+        <th>
+            @Laboratories.Web.Resources.LabTable.subject
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_day)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_lessonNum1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_subject1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_lessonNum2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_subject2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_lessonNum3)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_subject3)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_lessonNum4)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_subject4)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_lessonNum5)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.schd_subject5)
+    </td>
+
+</tr>
+        @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.schd_Id }, new { @class = "btn btn-danger" })
+    }
+
+</table>
+
+@using (Html.BeginForm("Delete", "Schedule", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="@Laboratories.Web.Resources.General.Delete" class="btn btn-danger" />
+
+        @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+    </div>
+}

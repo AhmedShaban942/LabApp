@@ -1,0 +1,64 @@
+﻿@model Laboratories.Domain.Teacher
+
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+
+
+<hr />
+<hr />
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Teatchers </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tech_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tech_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.phon
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tech_phon)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tech_email)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tech_address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</p>

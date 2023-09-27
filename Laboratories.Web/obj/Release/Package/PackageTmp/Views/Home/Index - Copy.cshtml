@@ -1,0 +1,104 @@
+﻿@using Laboratories.Domain;
+
+
+<div class="row tile_count">
+    <div class="col-md-3">
+        <a href="/Companies/Index" title="@Laboratories.Web.Resources.General.Company">
+            @{
+                if ((User)Session["UserInfo"] != null)
+                {
+                    User oUser = (User)Session["UserInfo"];
+                    if (ViewBag.companyimage != null)
+                    {
+                        @Html.Raw("<img width=\"250px\"  height=\"250px\" class=\"rounded-circle\" src=\"data:image/jpeg;base64," + @Convert.ToBase64String(ViewBag.companyimage) + "\"  />");
+
+                    }
+                    else
+                    {
+                        <img src="~/Design/build/images/Company.png" alt=" @Laboratories.Web.Resources.General.Company" class="rounded-circle">
+                    }
+                }
+            }
+
+
+        </a>
+        <a href="/Companies/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Company</h3></a>
+
+    </div>
+    <div class="col-md-3">
+        <a href="/Complexes/Index" title="@Laboratories.Web.Resources.General.Company">
+            @{
+                if ((User)Session["UserInfo"] != null)
+                {
+                    User oUser = (User)Session["UserInfo"];
+                    if (ViewBag.compleximage != null)
+                    {
+                        @Html.Raw("<img width=\"250px\"  height=\"250px\" class=\"rounded-circle\" src=\"data:image/jpeg;base64," + @Convert.ToBase64String(ViewBag.compleximage) + "\"  />");
+
+                    }
+                    else
+                    {
+                        <img src="~/Design/build/images/Complex.png" alt="@Laboratories.Web.Resources.General.Complexes" class="rounded-circle">
+                    }
+                }
+            }
+
+
+        </a>
+        <a href="/Complexes/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Complexes</h3></a>
+
+    </div>
+    <div class="col-md-3">
+        <a href="/Schools/Index" title="@Laboratories.Web.Resources.General.Company">
+            @{
+                if ((User)Session["UserInfo"] != null)
+                {
+                    User oUser = (User)Session["UserInfo"];
+                    if (ViewBag.schoolimage != null)
+                    {
+                        @Html.Raw("<img width=\"250px\"  height=\"250px\" class=\"rounded-circle\" src=\"data:image/jpeg;base64," + @Convert.ToBase64String(ViewBag.schoolimage) + "\"  />");
+
+                    }
+                    else
+                    {
+                        <img src="~/Design/build/images/Shcol.png" alt="@Laboratories.Web.Resources.General.Schools" class="rounded-circle">
+                    }
+                }
+            }
+
+
+        </a>
+        <a href="/Schools/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Schools</h3></a>
+
+    </div>
+    <div class="col-md-3">
+        <a href="/Items/Index" title="@Laboratories.Web.Resources.General.Reports"> <img width="250px"  height="250px"  src="~/Design/build/images/Labar.png" alt="@Laboratories.Web.Resources.General.Items" class="rounded-circle"></a>
+        <a href="/Items/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Items</h3></a>
+    </div>
+
+    @*<div class="col-md-3">
+            <a href="/Companies/Index" title="@Laboratories.Web.Resources.General.Company"> <img  src="~/Design/build/images/Company.png"  alt=" @Laboratories.Web.Resources.General.Company" class="rounded-circle"></a>
+            <a href="/Companies/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Company</h3></a>
+
+        </div>*@
+    <!--<div class="col-md-3">
+        <a href="/Complexes/Index" title="@Laboratories.Web.Resources.General.Complexes"> <img src="~/Design/build/images/Complex.png" alt="@Laboratories.Web.Resources.General.Complexes" class="rounded-circle"></a>
+        <a href="/Complexes/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Complexes</h3></a>
+
+    </div>
+    <div class="col-md-3">
+        <a href="/Schools/Index" title=" @Laboratories.Web.Resources.General.Schools"> <img src="~/Design/build/images/Shcol.png" alt="@Laboratories.Web.Resources.General.Schools" class="rounded-circle"></a>
+        <a href="/Schools/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Schools</h3></a>
+    </div>
+    <div class="col-md-3">
+        <a href="/Items/Index" title="@Laboratories.Web.Resources.General.Items"> <img src="~/Design/build/images/Labar.png" alt="@Laboratories.Web.Resources.General.Items" class="rounded-circle"></a>
+        <a href="/Items/Index" class="btn btn-secondary"><h3>@Laboratories.Web.Resources.General.Items</h3></a>-->
+    </div>
+
+
+        </div>
+
+
+
+
+

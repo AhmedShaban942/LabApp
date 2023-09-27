@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Laboratories.Domain.User>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Schools;
+}
+
+<hr />
+<hr />
+<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Schools </strong>
+</h2>
+
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.AddOrEdit, "Create", "UserSchools", null, new { @class = "btn btn-info", @target = "_blank" })
+
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+                <th>
+                    @Laboratories.Web.Resources.General.arName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.enName
+                </th>
+
+            </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr class="even pointer">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usr_arName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usr_enName)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+<br />

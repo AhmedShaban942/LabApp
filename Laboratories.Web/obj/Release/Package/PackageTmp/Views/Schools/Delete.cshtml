@@ -1,0 +1,84 @@
+﻿@model Laboratories.Domain.School
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Delete;
+}
+
+<hr />
+<hr />
+
+<h3> @Laboratories.Web.Resources.General.delete_</h3>
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Schools </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.General.Complexes
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sch_complex.comp_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sch_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sch_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.phon
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sch_phon)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sch_email)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sch_address)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.General.laboratoryRecordName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sch_laboratoryRecordName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="@Laboratories.Web.Resources.General.Delete" class="btn btn-danger" />
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</div>
+    }
+</div>

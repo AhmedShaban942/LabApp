@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "CustomReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">@Laboratories.Web.Resources.Report.choisReportType </strong>
+</h4>
+<hr />
+<form class="reportType">
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkCompany" checked value="0">
+        <label class="form-check-label" for="chkCompany">@Laboratories.Web.Resources.General.Company</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkComplexes" value="1">
+        <label class="form-check-label" for="chkComplexes">@Laboratories.Web.Resources.General.Complexes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkSchools" value="1">
+        <label class="form-check-label" for="chkSchools">@Laboratories.Web.Resources.General.Schools</label>
+    </div>
+    @*<div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="chkTeachers" value="1">
+        <label class="form-check-label" for="chkTeachers">@Laboratories.Web.Resources.General.Teatchers</label>
+    </div>*@
+</form>
+
+
+<div class="form-horizontal">
+
+    <hr />
+
+    <div class="form-group" id="companygrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Company</label>
+        <div class="col-md-10">
+            @Html.DropDownList("company", null, htmlAttributes: new { @class = "form-control selector", @id = "companyid" })
+
+        </div>
+    </div>
+    <div class="form-group" hidden id="complexgrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Complexes</label>
+        <div class="col-md-10">
+            @Html.DropDownList("complex", null, htmlAttributes: new { @class = "form-control", @id = "complexid" })
+
+        </div>
+    </div>
+    <div class="form-group" hidden id="schoolgrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Schools</label>
+        <div class="col-md-10">
+            <select id="schoolid" class="form-control">
+            </select>
+
+        </div>
+    </div>
+    @*<div class="form-group" hidden id="teachergrp">
+        <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Teatchers</label>
+        <div class="col-md-10">
+            <select id="teacherid" class="form-control">
+            </select>
+
+        </div>
+    </div>*@
+
+</div>
+<hr />
+<hr />
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:red">@Laboratories.Web.Resources.General.Reports </strong>
+    </h4>
+    <hr />
+    <form class="reportName">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="GetYear" checked value="TeacherScheduleYear">
+                    <label class="form-check-label" for="GetYear">@Laboratories.Web.Resources.General.Year</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="GetMonth" value="TeacherScheduleMonth">
+                    <label class="form-check-label" for="GetMonth">@Laboratories.Web.Resources.General.month</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="GetWeek" value="TeacherScheduleWeek">
+                    <label class="form-check-label" for="GetWeek">@Laboratories.Web.Resources.General.Week</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" id="monthgrp" hidden>
+                    <label class="control-label col-md-2">
+                        @Laboratories.Web.Resources.LabTable.monthNumberr
+                    </label>
+                    <div class="col-md-10">
+                        <input type="number" id="monthNumber" class="form-control" />
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group" id="weekgrp" hidden>
+             
+                    <label class="control-label col-md-2">
+                        @Laboratories.Web.Resources.LabTable.weekNumber
+                    </label>
+                    <div class="col-md-10">
+                        <input type="number" id="weekNumber" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+
+<hr />
+<div>
+    <a herf="" class="btn btn-primary" id="print">@Laboratories.Web.Resources.General.download</a>
+</div>
+
+
+@section scripts{
+    <script>
+        var reportName = "TeacherScheduleYear";
+        var complexName = null;
+        var schoolName = null;
+        var teacher = null;
+        var month = null;
+        var week = null;
+        $("#GetYear").change(function () {
+            reportName = $("#GetYear").val()
+        });
+        $("#GetMonth").change(function () {
+            reportName = $("#GetMonth").val()
+        });
+        $("#GetWeek").change(function () {
+            reportName = $("#GetWeek").val()
+        });
+      
+        $("#chkCompany").change(function () {
+            complexName = null;
+            schoolName = null;
+            $("#schoolgrp").hide();
+            $("#complexgrp").hide();
+            $("#teachergrp").hide();
+            $("#complexid").val(null);
+            $("#schoolid").val(null);
+/*            $("#teacherid").val(null);*/
+        });
+        $("#chkComplexes").change(function () {
+            complexName = $("#complexid").val();
+            schoolName = null;
+            $("#schoolgrp").hide();
+            $("#complexgrp").show();
+            $("#teachergrp").hide();
+            $("#schoolid").val(null);
+/*            $("#teacherid").val(null);*/
+        });
+
+        $("#complexid").change(function () {
+            GetSchools($("#complexid").val());
+            $("#teachergrp").hide();
+            $("#schoolid").val(null);
+/*            $("#teacherid").val(null);*/
+            complexName = $("#complexid").val();
+        });
+        $("#chkSchools").change(function () {
+            complexName = $("#complexid").val();
+            schoolName = $("#schoolid").val();
+            $("#complexgrp").show();
+            GetSchools($("#companyid").val());
+            $("#schoolgrp").show();
+/*            $("#teachergrp").hide();*/
+            
+
+
+        });
+
+        //$("#chkTeachers").change(function () {
+        //    complexName = $("#complexid").val();
+        //    schoolName = $("#schoolid").val();
+        //    $("#complexgrp").show();
+        //    GetSchools($("#companyid").val());
+        //    $("#schoolgrp").show();
+        //    var scool_id = $("#schoolid").val();
+        //    if (scool_id != null) {
+        //        GetTeacher(scool_id);
+        //    }
+        //    else
+        //        GetTeacher(1);
+
+        //    $("#teachergrp").show();
+        //    teacher = $("#teacherid").val();
+        //});
+
+        //$("#schoolid").change(function () {
+        //    schoolName = $("#schoolid").val();
+        //    GetTeacher(schoolName);
+        //    $("#teachgrp").show();
+
+        //});
+
+        $("#GetYear").change(function () {
+            $("#monthgrp").hide();
+            $("#weekgrp").hide();  
+            $("#monthNumber").val(null);
+            $("#weekNumber").val(null);
+
+        });
+        $("#GetMonth").change(function () {
+            $("#monthgrp").show();
+            $("#weekgrp").hide();
+            $("#weekNumber").val(null);
+            month = $("#monthNumber").val();
+
+        });
+        $("#GetWeek").change(function () {
+            $("#monthgrp").show();
+            $("#weekgrp").show();
+            month = $("#monthNumber").val();
+            week = $("#weekNumber").val();
+        });
+        $("#print").click(function (e) {
+
+            $("#print").attr('href', '../SchedulReport/DownloadCustomData?reportType=' + reportName + '&companyId=' + $("#companyid").val() + '&complexId=' + complexName + '&schoolId=' + $("#schoolid").val() +  '&month=' + $("#monthNumber").val() + '&week=' + $("#weekNumber").val() + '');
+
+        });
+
+
+        function GetSchools(complex_Id) {
+            $("#schoolid").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Report/GetSchools?complex_Id=' + complex_Id + '',
+                success: function (data, textStatus, xhr) {
+                    $("#schoolid").append('<option>اختر المدرسة</option>');
+                    for (var i in data) {
+                        $("#schoolid").append('<option value="' + data[i].Id + '">' + data[i].sch_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+
+        //function GetTeacher(scool_Id) {
+        //    $("#teacherid").empty();
+
+        //    $.ajax({
+        //        type: 'GET',
+        //        contentType: 'application/json; charset=utf-8',
+        //        url: '../SchedulReport/GetTeacher?schoolid=' + scool_Id + '',
+        //        success: function (data, textStatus, xhr) {
+
+        //            for (var i in data) {
+        //                $("#teacherid").append('<option value="' + data[i].Id + '">' + data[i].tech_arName + '</option>');
+
+        //            }
+        //        },
+        //        error: function (xhr, textStatus, errorThrown) {
+        //            alert('Error in Operation');
+        //        }
+        //    });
+        //}
+    </script>
+}

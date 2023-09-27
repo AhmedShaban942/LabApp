@@ -1,0 +1,46 @@
+﻿@model Laboratories.Domain.Course
+
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Delete;
+}
+
+<hr />
+<hr />
+
+<h3> @Laboratories.Web.Resources.General.delete_</h3>
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.courses </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cors_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cors_enName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Delete" class="btn btn-danger" />
+
+            @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+        </div>
+    }
+</div>

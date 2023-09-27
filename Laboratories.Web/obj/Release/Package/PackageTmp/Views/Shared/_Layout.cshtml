@@ -1,0 +1,822 @@
+﻿@using Laboratories.Domain;
+<!DOCTYPE html>
+<html lang="fa" dir="@(Laboratories.Web.Controllers.LanguageController.IsRighToLeft() ? "rtl" : "ltr")">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="fontiran.com:license" content="Y68A9">
+    <link rel="icon" href="~/Design/build/images/Logo.ico" type="image/ico" />
+    <title> @Laboratories.Web.Resources.General.LaboratoryUpdate  </title>
+      
+    <!-- Bootstrap -->
+    <link href="~/Design/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    @if (Laboratories.Web.Controllers.LanguageController.IsRighToLeft())
+    {
+        <link href="~/Design/vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css" rel="stylesheet">
+    }
+    <!-- Font Awesome -->
+    <link href="~/Design/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Design/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="~/Design/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Design/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/Design/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+
+
+    @if (Laboratories.Web.Controllers.LanguageController.IsRighToLeft())
+    {
+        <link href="~/Design/build/css/custom.min.css" rel="stylesheet">
+        <link href="~/Design/build/css/StyleSheetCustom.css" rel="stylesheet" />
+    }
+    else
+    {
+        <link href="~/Design/build/css/custom.min-ltr.css" rel="stylesheet">
+        <link href="~/Design/build/css/StyleSheetCustom-ltr.css" rel="stylesheet" />
+    }
+
+    <!-- Custom Theme Style -->
+    
+<link href="~/Design/build/css/DropDownSearch.css" rel="stylesheet" />
+</head>
+<!-- /header content -->
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col hidden-print">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/Home/Index" class="site_title">
+                            <i class="fa fa-flask"></i>
+
+                            <span> @Laboratories.Web.Resources.General.LaboratoryUpdate</span>
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+
+                        @{ string name = "مدير النظام";
+                            if ((User)Session["UserInfo"] != null)
+                            {
+                                User oUser = (User)Session["UserInfo"];
+                                if (Laboratories.Web.Controllers.LanguageController.IsRighToLeft())
+                                {
+                                    if (oUser.usr_arName != null)
+                                    {
+                                        name = oUser.usr_arName;
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (oUser.usr_enName != null)
+                                    {
+                                        name = oUser.usr_enName;
+                                    }
+
+                                }
+                                <div class="profile_pic">
+                                    @if (oUser.usr_image != null)
+                                    {
+                                        @Html.Raw("<img class=\"img-circle profile_img \" src=\"data:image/jpeg;base64," + @Convert.ToBase64String(oUser.usr_image) + "\"  />");
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Design/build/images/img.jpg" alt="..." class="img-circle profile_img">
+                                    }
+
+
+                                </div>
+                            }
+
+
+                            <div class="profile_info">
+                                <span>@name</span>
+                            </div>
+                        }
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+                    @if ((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"] != null)
+                    {
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <ul class="nav side-menu">
+                                    <li>
+                                        <a href="/Home/Index" style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(1)==true?"block":"none")"><i class="fa fa-home"></i>  @Laboratories.Web.Resources.General.Home <span></span></a>
+                                    </li>
+                                    @if ((User)Session["UserInfo"] != null)
+                                    {
+                                        User oUser = (User)Session["UserInfo"];
+                                        //if (oUser.usr_role == Laboratories.Domain.User.Role.مدير_نظام || oUser.usr_role == Laboratories.Domain.User.Role.مشرف_مشرفة)
+                                        //{
+                                        <li>
+                                            <a>
+                                                <i class="fa fa-desktop"></i>  @Laboratories.Web.Resources.General.Management  <span class="fa fa-chevron-down"></span>
+                                            </a>
+                                            <ul class="nav child_menu">
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(2)==true?"block":"none")" href="/Users/Index"> @Laboratories.Web.Resources.General.Users </a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(2)==true?"block":"none")" href="/UserRoles/Index"> @Laboratories.Web.Resources.General.Roles </a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(2)==true?"block":"none")" href="/ScreenRoles/Index"> @Laboratories.Web.Resources.General.Screens </a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(7)==true?"block":"none")" href="/Companies/Index"> @Laboratories.Web.Resources.General.Company</a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(12)==true?"block":"none")" href="/Complexes/Index"> @Laboratories.Web.Resources.General.Complexes</a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(17)==true?"block":"none")" href="/Schools/Index"> @Laboratories.Web.Resources.General.Schools</a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(22)==true?"block":"none")" href="/Teachers/Index"> @Laboratories.Web.Resources.General.Teatchers</a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(27)==true?"block":"none")" href="/Units/Index"> @Laboratories.Web.Resources.General.Units</a></li>
+                                                <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(33)==true?"block":"none")" href="/Courses/Index"> @Laboratories.Web.Resources.General.courses</a></li>
+                                            </ul>
+                                        </li>
+                                        //}
+
+                                    }
+                                    @if ((User)Session["UserInfo"] != null && Session["ScoolId"] != null)
+                                    {
+                                        User oUserTest = (User)Session["UserInfo"];
+                                        if ((int)Session["ScoolId"] != null)
+                                        {
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-desktop"></i>  @Laboratories.Web.Resources.General.System  <span class="fa fa-chevron-down"></span>
+                                                </a>
+                                                <ul class="nav child_menu">
+                                                    <li>
+                                                        <a>
+                                                            @Laboratories.Web.Resources.General.Items  <span class="fa fa-chevron-down"></span>
+                                                        </a>
+                                                        <ul class="nav child_menu">
+                                                            @if ((User)Session["UserInfo"] != null)
+                                                            {
+                                                                User oUser = (User)Session["UserInfo"];
+                                                                if ((int)Session["Department"] == 0)
+                                                                {
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(38)==true?"block":"none")" href="/Items/GetScincePrimaryLevel"> @Laboratories.Web.Resources.Item.elementaryDepartment</a>
+                                                                    </li>
+                                                                }
+                                                            }
+                                                            @if ((User)Session["UserInfo"] != null)
+                                                            {
+                                                                User oUser = (User)Session["UserInfo"];
+                                                                if ((int)Session["Department"] == 1)
+                                                                {
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(38)==true?"block ":"none ")" href="/Items/GetScinceSecondryLevel"> @Laboratories.Web.Resources.Item.middleDepartment</a>
+
+                                                                    </li>
+                                                                }
+                                                            }
+                                                            @if ((User)Session["UserInfo"] != null)
+                                                            {
+                                                                User oUser = (User)Session["UserInfo"];
+                                                                if ((int)Session["Department"] == 2)
+                                                                {
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(38)==true?"block":"none")"> @Laboratories.Web.Resources.Item.highSchool <span class="fa fa-chevron-down"></span></a>
+                                                                        <ul class="nav child_menu">
+
+                                                                            <li class="sub_menu">
+                                                                                <a href="/Items/GetPhysicsHighLevel">@Laboratories.Web.Resources.Item.phisics</a>
+
+                                                                            </li>
+                                                                            <li class="sub_menu">
+                                                                                <a href="/Items/GetChemistryHighLevel">@Laboratories.Web.Resources.Item.chemics</a>
+
+                                                                            </li>
+                                                                            <li class="sub_menu">
+                                                                                <a href="/Items/GetBiologyHighLevel">@Laboratories.Web.Resources.Item.biology</a>
+
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </li>
+                                                                }
+                                                            }
+                                                        </ul>
+
+                                                    </li>
+                                                    <li>
+                                                        <a>
+                                                            @Laboratories.Web.Resources.General.laboratorybasis  <span class="fa fa-chevron-down"></span>
+                                                        </a>
+                                                        <ul class="nav child_menu">
+                                                            @if ((User)Session["UserInfo"] != null)
+                                                            {
+                                                                User oUser = (User)Session["UserInfo"];
+                                                                if ((int)Session["Department"] == 0)
+                                                                {
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(42)==true?"block":"none")" href="/LaboratoryBasis/GetPrimaryLevel"> @Laboratories.Web.Resources.Item.elementaryDepartment</a>
+                                                                    </li>
+                                                                }
+                                                            }
+                                                            @if ((User)Session["UserInfo"] != null)
+                                                            {
+                                                                User oUser = (User)Session["UserInfo"];
+                                                                if ((int)Session["Department"] == 1)
+                                                                {
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(42)==true?"block":"none")" href="/LaboratoryBasis/GetSecondryLevel"> @Laboratories.Web.Resources.Item.middleDepartment</a>
+
+                                                                    </li>
+                                                                }
+                                                            }
+                                                            @if ((User)Session["UserInfo"] != null)
+                                                            {
+                                                                User oUser = (User)Session["UserInfo"];
+                                                                if ((int)Session["Department"] == 2)
+                                                                {
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(42)==true?"block":"none")"> @Laboratories.Web.Resources.Item.highSchool <span class="fa fa-chevron-down"></span></a>
+                                                                        <ul class="nav child_menu">
+
+                                                                            <li class="sub_menu">
+                                                                                <a href="/LaboratoryBasis/GetPhysicsHighLevel">@Laboratories.Web.Resources.Item.phisics</a>
+
+                                                                            </li>
+                                                                            <li class="sub_menu">
+                                                                                <a href="/LaboratoryBasis/GetChemistryHighLevel">@Laboratories.Web.Resources.Item.chemics</a>
+
+                                                                            </li>
+                                                                            <li class="sub_menu">
+                                                                                <a href="/LaboratoryBasis/GetBiologyHighLevel">@Laboratories.Web.Resources.Item.biology</a>
+
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </li>
+                                                                }
+                                                            }
+                                                        </ul>
+
+                                                    </li>
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(47)==true?"block":"none")" href="/Experiments/Index"> @Laboratories.Web.Resources.General.experimentName</a></li>
+                                                        <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(52)==true?"block":"none")" href="/Schedule/Index"> @Laboratories.Web.Resources.General.labTable</a></li>
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        //if (oUser.usr_role == Laboratories.Domain.User.Role.مدير_نظام || oUser.usr_role == Laboratories.Domain.User.Role.مشرف_مشرفة)
+                                                        //{
+
+                                                        <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(57)==true?"block":"none")" href="/TeacherMovments/Index"> @Laboratories.Web.Resources.LabTable.teacherMovment</a></li>
+                                                        <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(62)==true?"block":"none")" href="/Report/TransferCustody">@Laboratories.Web.Resources.Report.TransferCustody</a> </li>
+                                                        //}
+                                                    }
+
+                                                </ul>
+                                            </li>
+
+
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-bar-chart-o"></i>@Laboratories.Web.Resources.General.ItemReports<span class="fa fa-chevron-down"></span>
+                                                </a>
+                                                <ul class="nav child_menu">
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        if ((int)Session["Department"] == 0)
+                                                        {
+                                                            <li>
+                                                                <a> @Laboratories.Web.Resources.Item.elementaryDepartment <span class="fa fa-chevron-down"></span></a>
+                                                                <ul class="nav child_menu">
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(63)==true?"block":"none")" href="/Report/GetPrimaryItems">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetPresentPrimaryItems">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(65)==true?"block":"none")" href="/Report/GetUnAvalablePrimaryItems">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(66)==true?"block":"none")" href="/Report/GetWantedPrimaryItems">@Laboratories.Web.Resources.Report.item_wantedRequired </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(67)==true?"block":"none")" href="/Report/GetCanAvalablePrimaryItems">@Laboratories.Web.Resources.Report.item_wantedCanavalable </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(68)==true?"block":"none")" href="/Report/GetexcessiveQtyPrimaryItems">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(69)==true?"block":"none")" href="/Report/GetOverPrimaryItems">@Laboratories.Web.Resources.Item.itemOver</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetUnValidPrimaryItems">@Laboratories.Web.Resources.Report.UnValidItemReport</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        if ((int)Session["Department"] == 1)
+                                                        {
+                                                            <li>
+                                                                <a> @Laboratories.Web.Resources.Item.middleDepartment <span class="fa fa-chevron-down"></span></a>
+                                                                <ul class="nav child_menu">
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(63)==true?"block":"none")" href="/Report/GetSecondryItems">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetPresentSecondryItems">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(65)==true?"block":"none")" href="/Report/GetUnAvalableSecondryItems">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(66)==true?"block":"none")" href="/Report/GetWantedSecondryItems">@Laboratories.Web.Resources.Report.item_wantedRequired </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(67)==true?"block":"none")" href="/Report/GetCanAvalableSecondryItems">@Laboratories.Web.Resources.Report.item_wantedCanavalable </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(68)==true?"block":"none")" href="/Report/GetexcessiveQtySecondryItems">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(69)==true?"block":"none")" href="/Report/GetOverSecondryItems">@Laboratories.Web.Resources.Item.itemOver</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetUnValidSecondryItems">@Laboratories.Web.Resources.Report.UnValidItemReport</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        if ((int)Session["Department"] == 2)
+                                                        {
+                                                            <li>
+                                                                <a> @Laboratories.Web.Resources.Item.highSchool <span class="fa fa-chevron-down"></span></a>
+                                                                <ul class="nav child_menu">
+
+                                                                    <li>
+                                                                        <a>@Laboratories.Web.Resources.Item.phisics <span class="fa fa-chevron-down"></span></a>
+                                                                        <ul class="nav child_menu">
+                                                                            <li class="sub_menu">
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(63)==true?"block":"none")" href="/Report/GetHighScoolItemsPhysics">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetPresentHighScoolItemsPhysics">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(65)==true?"block":"none")" href="/Report/GetUnAvalableHighScoolItemsPhysics">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(66)==true?"block":"none")" href="/Report/GetWantedHighScoolItemsPhysics">@Laboratories.Web.Resources.Report.item_wantedRequired </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(67)==true?"block":"none")" href="/Report/GetCanAvalableHighScoolItemsPhysics">@Laboratories.Web.Resources.Report.item_wantedCanavalable </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(68)==true?"block":"none")" href="/Report/GetexcessiveQtyHighScoolItemsPhysics">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(69)==true?"block":"none")" href="/Report/GetOverHighScoolItemsPhysics">@Laboratories.Web.Resources.Item.itemOver</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetUnValidHighScoolItemsPhysics">@Laboratories.Web.Resources.Report.UnValidItemReport</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a>@Laboratories.Web.Resources.Item.chemics <span class="fa fa-chevron-down"></span></a>
+                                                                        <ul class="nav child_menu">
+                                                                            <li class="sub_menu">
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(63)==true?"block":"none")" href="/Report/GetHighScoolItemsChemistry">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetPresentHighScoolItemsChemistry">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(65)==true?"block":"none")" href="/Report/GetUnAvalableHighScoolItemsChemistry">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(66)==true?"block":"none")" href="/Report/GetWantedHighScoolItemsChemistry">@Laboratories.Web.Resources.Report.item_wantedRequired </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(67)==true?"block":"none")" href="/Report/GetCanAvalableHighScoolItemsChemistry">@Laboratories.Web.Resources.Report.item_wantedCanavalable </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(68)==true?"block":"none")" href="/Report/GetexcessiveQtyHighScoolItemsChemistry">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(69)==true?"block":"none")" href="/Report/GetOverHighScoolItemsChemistry">@Laboratories.Web.Resources.Item.itemOver</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetUnValidHighScoolItemsChemistry">@Laboratories.Web.Resources.Report.UnValidItemReport</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a>@Laboratories.Web.Resources.Item.biology <span class="fa fa-chevron-down"></span></a>
+                                                                        <ul class="nav child_menu">
+                                                                            <li class="sub_menu">
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(63)==true?"block":"none")" href="/Report/GetHighScoolItemsBiology">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetPresentHighScoolItemsBiology">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(65)==true?"block":"none")" href="/Report/GetUnAvalableHighScoolItemsBiology">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(66)==true?"block":"none")" href="/Report/GetWantedHighScoolItemsBiology">@Laboratories.Web.Resources.Report.item_wantedRequired </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(67)==true?"block":"none")" href="/Report/GetCanAvalableHighScoolItemsBiology">@Laboratories.Web.Resources.Report.item_wantedCanavalable </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(68)==true?"block":"none")" href="/Report/GetexcessiveQtyHighScoolItemsBiology">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(69)==true?"block":"none")" href="/Report/GetOverHighScoolItemsBiology">@Laboratories.Web.Resources.Item.itemOver</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(64)==true?"block":"none")" href="/Report/GetUnValidHighScoolItemsBiology">@Laboratories.Web.Resources.Report.UnValidItemReport</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        //if (oUser.usr_role == Laboratories.Domain.User.Role.مدير_نظام || oUser.usr_role == Laboratories.Domain.User.Role.مشرف_مشرفة)
+                                                        //{
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(70)==true?"block":"none")" href="/Report/CustomReport">
+                                                                <i class="sub_menu"></i>@Laboratories.Web.Resources.Report.generalItemReport
+                                                            </a>
+                                                        </li>
+                                                        // }
+                                                    }
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-bar-chart-o"></i>@Laboratories.Web.Resources.General.LaboratoryBasisReports<span class="fa fa-chevron-down"></span>
+                                                </a>
+                                                <ul class="nav child_menu">
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        if ((int)Session["Department"] == 0)
+                                                        {
+                                                            <li>
+                                                                <a> @Laboratories.Web.Resources.Item.elementaryDepartment <span class="fa fa-chevron-down"></span></a>
+                                                                <ul class="nav child_menu">
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(71)==true?"block":"none")" href="/LaboratoryBasisReports/GetPrimaryItems">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(72)==true?"block":"none")" href="/LaboratoryBasisReports/GetPresentPrimaryItems">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(73)==true?"block":"none")" href="/LaboratoryBasisReports/GetUnAvalablePrimaryItems">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(74)==true?"block":"none")" href="/LaboratoryBasisReports/GetexcessiveQtyPrimaryItems">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        if ((int)Session["Department"] == 1)
+                                                        {
+                                                            <li>
+                                                                <a> @Laboratories.Web.Resources.Item.middleDepartment <span class="fa fa-chevron-down"></span></a>
+                                                                <ul class="nav child_menu">
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(71)==true?"block":"none")" href="/LaboratoryBasisReports/GetSecondryItems">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(72)==true?"block":"none")" href="/LaboratoryBasisReports/GetPresentSecondryItems">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(73)==true?"block":"none")" href="/LaboratoryBasisReports/GetUnAvalableSecondryItems">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(74)==true?"block":"none")" href="/LaboratoryBasisReports/GetexcessiveQtySecondryItems">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        if ((int)Session["Department"] == 2)
+                                                        {
+                                                            <li>
+                                                                <a> @Laboratories.Web.Resources.Item.highSchool <span class="fa fa-chevron-down"></span></a>
+                                                                <ul class="nav child_menu">
+                                                                    <li class="sub_menu">
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(71)==true?"block":"none")" href="/LaboratoryBasisReports/GetHighScoolItems">@Laboratories.Web.Resources.Item.itemReprt</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(72)==true?"block":"none")" href="/LaboratoryBasisReports/GetPresentHighScoolItems">@Laboratories.Web.Resources.Item.itemPresent</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(73)==true?"block":"none")" href="/LaboratoryBasisReports/GetUnAvalableHighScoolItems">@Laboratories.Web.Resources.Item.itemUnAvalable</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(74)==true?"block":"none")" href="/LaboratoryBasisReports/GetexcessiveQtyHighScoolItems">@Laboratories.Web.Resources.Report.excessiveQtyReport </a>
+                                                                    </li>
+
+
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                    }
+                                                    @if ((User)Session["UserInfo"] != null)
+                                                    {
+                                                        User oUser = (User)Session["UserInfo"];
+                                                        // if (oUser.usr_role == Laboratories.Domain.User.Role.مدير_نظام || oUser.usr_role == Laboratories.Domain.User.Role.مشرف_مشرفة)
+                                                        //{
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(75)==true?"block":"none")" href="/LaboratoryBasisReports/CustomReport">
+                                                                <i class="sub_menu"></i>@Laboratories.Web.Resources.Report.generalBasicReport
+                                                            </a>
+                                                        </li>
+                                                        // }
+                                                    }
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(76)==true?"block":"none")" href="/SchedulReport/CustomReport">
+                                                    <i class="fa fa-bar-chart-o"></i>@Laboratories.Web.Resources.Report.scdualReport
+                                                </a>
+                                            </li>
+
+                                        }
+
+                                    }
+                                    <li>
+                                        <a>
+                                            <i class="fa fa-bar-chart-o"></i>@Laboratories.Web.Resources.Experiment.experimentReport<span class="fa fa-chevron-down"></span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            @if ((User)Session["UserInfo"] != null)
+                                            {
+
+                                                <li>
+                                                    <a> @Laboratories.Web.Resources.Experiment.experimentPresent <span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li class="sub_menu">
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(77)==true?"block":"none")" href="/Experiments/GetDoneByTeacher">للمعلم/للمعلمة</a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(78)==true?"block":"none")" href="/Experiments/GetDoneByDepartment">للمقرر</a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(79)==true?"block":"none")" href="/Experiments/GetDoneByDepartment">للمرحلة</a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(80)==true?"block":"none")" href="/Experiments/GetDone">الكل </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+
+                                            }
+                                            @if ((User)Session["UserInfo"] != null)
+                                            {
+                                                <li>
+                                                    <a> @Laboratories.Web.Resources.Experiment.experimentUnPresent <span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li class="sub_menu">
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(81)==true?"block":"none")" href="/Experiments/GetNotDoneByTeacher">للمعلم/للمعلمة</a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(82)==true?"block":"none")" href="/Experiments/GetNotDoneByDepartment">للمقرر</a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(83)==true?"block":"none")" href="/Experiments/GetDoneByDepartment">للمرحلة</a>
+                                                        </li>
+                                                        <li>
+                                                            <a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(84)==true?"block":"none")" href="/Experiments/GetNotDone">الكل </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a>
+                                            <i class="fa fa-desktop"></i>  @Laboratories.Web.Resources.StudentRates.studentRates  <span class="fa fa-chevron-down"></span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(101)==true?"block":"none")" href="/Students/Index"> @Laboratories.Web.Resources.StudentRates.students </a></li>
+                                            <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(106)==true?"block":"none")" href="/StudyCourses/Index"> @Laboratories.Web.Resources.StudentRates.studyCourse </a></li>
+                                            <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(89)==true?"block":"none")" href="/Exams/Index"> @Laboratories.Web.Resources.StudentRates.examsname </a></li>
+                                            <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(95)==true?"block":"none")" href="/StudentExamesGrade/Index"> @Laboratories.Web.Resources.StudentRates.exams </a></li>
+                                            <li><a style="display:@(((Laboratories.Web.Models.ScreenViewModel)HttpContext.Current.Session["screenPremssion"]).ScreenesId.Contains(111)==true?"block":"none")" href="/StudentExamesGrade/GradingMonitoring"> @Laboratories.Web.Resources.StudentRates.gradingMonitoring </a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!-- /sidebar menu -->
+                    }
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="تنظیمات">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="شاشة كاملة" onclick="toggleFullScreen();">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="خروج" href="/Account/LogIn">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav hidden-print ">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                   aria-expanded="false">
+
+                                    @{ if ((User)Session["UserInfo"] != null)
+                                        {
+                                            User oUser = (User)Session["UserInfo"];
+                                            if (Laboratories.Web.Controllers.LanguageController.IsRighToLeft())
+                                            {
+                                                if (oUser.usr_arName != null)
+                                                {
+                                                    name = oUser.usr_arName;
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (oUser.usr_enName != null)
+                                                {
+                                                    name = oUser.usr_enName;
+                                                }
+
+                                            }
+                                            if (oUser.usr_image != null)
+                                            {
+                                                @Html.Raw("<img  src=\"data:image/jpeg;base64," + @Convert.ToBase64String(oUser.usr_image) + "\"  />");
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Design/build/images/img.jpg" alt="">}
+                                        }
+
+
+                                        <span>@name</span> }
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-toggle count-info" title="@Laboratories.Web.Resources.General.changeSchool " href="/Home/SelectSchool">
+                                    <i class="glyphicon glyphicon-book"></i>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-language"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-item-text dropdown-menu-right">
+                                    <li>
+                                        <a class="dropdown-item" href="@Url.Action("Change", "Language", new { languageAbbreviation = "en" })">
+                                            <strong>English</strong>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="@Url.Action("Change", "Language", new { languageAbbreviation = "ar" })">
+                                            <strong>العربيه</strong>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-divider"></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- /header content -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                @RenderBody()
+
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            @*<footer class="hidden-print">
+                    <div class="pull-left">
+                        <a href="https://colorlib.com"></a>  <a href="https://morteza-karimi.ir"> </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>*@
+            <!-- /footer content -->
+        </div>
+    </div>
+    <div id="lock_screen">
+        <table>
+            <tr>
+                <td>
+                    <div class="clock"></div>
+                    <span class="unlock">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-square-o fa-stack-2x fa-inverse"></i>
+                            <i id="icon_lock" class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- jQuery -->
+    <script src="~/Design/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Design/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Design/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Design/vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Design/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Design/vendors/iCheck/icheck.min.js"></script>
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Design/vendors/moment/min/moment.min.js"></script>
+
+    <script src="~/Design/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="~/Design/vendors/Chart.js/dist/Chart.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Design/build/js/custom.min.js"></script>
+    <!-- Chart.js -->
+    <script src="~/Design/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="~/Design/vendors/Chart.js/dist/Chart.bundle.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- ECharts -->
+    <script src="~/Design/vendors/echarts/dist/echarts.min.js"></script>
+    <script src="~/Design/vendors/echarts/map/js/world.js"></script>
+    <script src="~/Design/build/js/DropDownSearch.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $(".selector").select2();
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

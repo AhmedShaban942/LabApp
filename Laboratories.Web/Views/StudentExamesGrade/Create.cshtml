@@ -1,0 +1,459 @@
+﻿<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">   @Laboratories.Web.Resources.StudentRates.exams</strong>
+</h2>
+<hr />
+<div>
+    <form id="NewOrderForm">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" id="companygrp">
+                        <label class="control-label col-md-4">@Laboratories.Web.Resources.General.Complexes</label>
+                        <div class="col-md-6">
+                            @Html.DropDownList("complex", null, htmlAttributes: new { @class = "form-control selector", @id = "complexid" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.schooltype
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_type" id="txt_type" class="form-control">
+                                <option value="0">بنين</option>
+                                <option value="1">بنات</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.schooldepartment
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_day" id="txt_department" class="form-control">
+                                <option value="0">ابتدائى</option>
+                                <option value="1">متوسط</option>
+                                <option value="2">ثانوى</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="schoolgrp">
+                        <label class="control-label col-md-4">@Laboratories.Web.Resources.Item.itm_schol</label>
+                        <div class="col-md-6">
+                            <select id="schoolid" class="form-control selector">
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.itm_term
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_term" id="txt_term" class="form-control">
+                                <option value="0">الاول</option>
+                                <option value="1">الثانى</option>
+                                <option value="2">الثالث</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.itm_level
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_level" id="txt_level" class="form-control">
+
+                                <option value="0"> الاول</option>
+                                <option value="1">الثاني</option>
+                                <option value="2">الثالث</option>
+                                <option value="3">الرابع</option>
+                                <option value="4">الخامس</option>
+                                <option value="5">السادس</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.StudentRates.levelRecord
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_erecord" id="txt_erecord" class="form-control">
+
+                                <option value="0">أ</option>
+                                <option value="1">ب</option>
+                                <option value="2">ث</option>
+                                <option value="3">ج</option>
+                                <option value="4">د</option>
+                                <option value="5">ه</option>
+                                <option value="6">ط</option>
+                                <option value="7">و</option>
+                                <option value="8">ئ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="studyCoursegrp">
+                        <label class="control-label col-md-4">@Laboratories.Web.Resources.StudentRates.studyCourse</label>
+                        <div class="col-md-6">
+                            <select id="studyCourseid" class="form-control selector">
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.StudentRates.exams
+                        </label>
+
+                        <div class="col-md-6">
+                            @Html.DropDownList("stdGH_examId", null, htmlAttributes: new { @class = "form-control selector", @id = "examid" })
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Experiment.experimentDate
+                        </label>
+
+                        <div class="col-md-6">
+                            <input type="text" name="ExecutionDate" class="form-control pull-right ExecutionDate" id="single_cal2" />
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.General.Teatchers
+                        </label>
+                        <div class="col-md-6">
+                            <select id="teacherid" class="form-control selector">
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">
+                        </label>
+                        <div class="col-md-6">
+                            <a id="addToList" class="btn btn-primary">@Laboratories.Web.Resources.StudentRates.displayStudent</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr />
+            <div class="form-horizontal">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action" id="detailsTable">
+                        <thead>
+                            <tr>
+                                <th style="width:40%">@Laboratories.Web.Resources.StudentRates.studentName</th>
+                                <th style="width:40%">@Laboratories.Web.Resources.StudentRates.studentId</th>
+                                <th style="width:20%">@Laboratories.Web.Resources.StudentRates.degree </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="detailsTableDet">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.StudentRates.studentNumber
+                        </label>
+                        <div class="col-md-6">
+                            <input type="text" readonly class="form-control" required name="txt_studentCount" id="txt_studentCount" value="0">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                        </label>
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <button id="saveExamDegree" type="submit" class="btn btn-primary">@Laboratories.Web.Resources.General.Save</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </form>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        var rate = 0;
+        var degree = 0;
+        GetSchools($("#complexid").val(), $("#txt_type").val(), $("#txt_department").val());
+
+        GetStudyCourse($("#txt_department").val(), $("#txt_level").val(), $("#txt_term").val());
+
+        $("#complexid").change(function () {
+            GetSchools($("#complexid").val(), $("#txt_type").val(), $("#txt_department").val());
+        });
+        $("#txt_type").change(function () {
+            GetSchools($("#complexid").val(), $("#txt_type").val(), $("#txt_department").val());
+        });
+        $("#txt_department").change(function () {
+            GetSchools($("#complexid").val(), $("#txt_type").val(), $("#txt_department").val());
+            GetStudyCourse($("#txt_department").val(), $("#txt_level").val(), $("#txt_term").val());
+
+        });
+        $("#txt_level").change(function () {
+            GetStudyCourse($("#txt_department").val(), $("#txt_level").val(), $("#txt_term").val());
+        });
+        $("#txt_term").change(function () {
+            GetStudyCourse($("#txt_department").val(), $("#txt_level").val(), $("#txt_term").val());
+        });
+
+        $("#schoolid").change(function () {
+            GetTeachers($("#schoolid").val());
+        });
+
+
+
+        $("#studyCourseid").change(function () {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../StudentExamesGrade/GetStudyCourseRate?StudyCourse=' + $("#studyCourseid").val(),
+                success: function (data, textStatus, xhr) {
+
+                    rate = data.cors_rate;
+                    degree = data.cors_degree;
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        });
+        function GetSchools(complex_Id, type_Id, department_Id) {
+            $("#schoolid").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Report/GetSchoolsByDepartment?complex_Id=' + complex_Id + '&department_Id=' + department_Id + '&type_Id=' + type_Id + ' ',
+                success: function (data, textStatus, xhr) {
+                    $("#schoolid").append('<option>اختر المدرسة</option>');
+
+                    for (var i in data) {
+                        $("#schoolid").append('<option value="' + data[i].Id + '">' + data[i].sch_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+
+
+        function GetStudyCourse(department_Id, level_Id, term_Id) {
+            $("#studyCourseid").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../StudentExamesGrade/GetStudyCourse?department_Id=' + department_Id + '&level_Id=' + level_Id + '&term_Id=' + term_Id + ' ',
+                success: function (data, textStatus, xhr) {
+                    $("#studyCourseid").append('<option>اختر المادة</option>');
+
+                    for (var i in data) {
+                        $("#studyCourseid").append('<option value="' + data[i].Id + '">' + data[i].cors_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+
+
+        function GetTeachers(school_Id) {
+            $("#teacherid").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../StudentExamesGrade/GetTeachers?school_Id=' + school_Id,
+                success: function (data, textStatus, xhr) {
+                    $("#teacherid").append('<option>اختر المعلم</option>');
+
+                    for (var i in data) {
+                        $("#teacherid").append('<option value="' + data[i].Id + '">' + data[i].tech_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+
+   
+        $("#addToList").click(function (e) {
+            try {
+                var department_Id = $("#txt_department").val();
+                var level_Id = $("#txt_level").val();
+                var record_Id = $("#txt_erecord").val();
+                var school_Id = $("#schoolid").val();
+                detailsTableBody = $("#detailsTable tbody");
+                if (department_Id != null && level_Id != null && record_Id != null && school_Id != null) {
+                    detailsTableBody.empty();
+                    $.ajax({
+                        type: 'GET',
+                        contentType: 'application/json; charset=utf-8',
+                        url: '../StudentExamesGrade/GetStudent?school_Id=' + school_Id + '&department_Id=' + department_Id + '&level_Id=' + level_Id + '&record_Id=' + record_Id + ' ',
+                        success: function (data, textStatus, xhr) {
+                            $("#txt_studentCount").val(data.length);
+                            for (var i in data) {
+                                /*                     detailsTableBody.append('<tr><td style="display:none">' + data[i].Id + '</td><td>' + data[i].std_arName + '</td><td>' + 0 + '</td><td>' + 0 + '</td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem"><span class="glyphicon glyphicon-trash"></span></a></td></tr>');*/
+                                detailsTableBody.append('<tr><td>' + data[i].std_arName + '</td><td style="display:none"><input type="text" value="' + data[i].std_arName + '"  readonly  class="control-label" ></td><td>' + data[i].std_IdentityNumber + '</td><td id="Degree" class="keyvalue"><input type="text" value=""   class="form-control" ><td style="display:none"><input type="text" value="' + data[i].Id + '"   class="form-control" ></td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem"><span class="glyphicon glyphicon-trash"></span></a></td>>');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            alert('Error in Operation');
+                        }
+                    });
+                }
+
+
+
+
+            } catch (e) {
+                alert("الرجاء اكمال البيانات المدخلة");
+            }
+       
+
+        });
+
+        $("#saveExamDegree").click(function (e) {
+            e.preventDefault();
+
+            var teatcher = $("#teacherid").val();
+            var scool = $("#schoolid").val();
+            var course = $("#studyCourseid").val();
+            var exam = $("#examid").val();
+            var date = $(".ExecutionDate").val();
+            var term = $("#txt_term").val();
+            var level = $("#txt_level").val();
+            var stdRecord = $("#txt_erecord").val();
+
+            var StudentGradesDet = [];
+            var table = document.getElementById('detailsTableDet');
+            var rowLength = table.rows.length;
+            var corect = true;
+            $("#detailsTableDet tr").each(function () {
+                var currentRow = $(this);
+                var studentName = $(this).find("td:eq(1) input[type='text']").val();
+                var studentId = $(this).find("td:eq(4) input[type='text']").val();
+                var degreeText = $(this).find("td:eq(3) input[type='text']").val();
+                if (degreeText > degree || degreeText < 0) {
+                    alert(" الدرجة القصوى للمادة  " + degree + " ادخل درجة الطالب" + studentName + " ادخل الدرجة الصحيحة ");
+                    corect = false;
+                }
+                
+                StudentGradesDet.push({ stdGD_studentId: studentId, stdGD_degree: degreeText });
+            });
+            if (corect) {
+                if (StudentGradesDet.length > 0) {
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        url: '../StudentExamesGrade/SaveExamGrade?schoolid=' + scool + '&teacherid=' + teatcher + '&studyCourseid=' + course + '&date=' + date + '&term=' + term + '&level=' + level + '&stdRecord=' + stdRecord + '&examid=' + exam + ' ',
+                        data: JSON.stringify(StudentGradesDet),
+                        success: function (data, textStatus, xhr) {
+                            if (data == "0") {
+                                alert("خطأ فى الاضافة اما ان المدرس تم ادخال بياناته مسبقا او ان الجدول به نفس اليوم مكرر");
+                            }
+                            else
+                                window.location.href = '/StudentExamesGrade/Index';
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            alert('Error in Operation');
+                        }
+                    });
+                }
+                else
+                    alert("الرجاء ادخال البيانات");
+            }
+            else {
+                alert("الرجاء ادخال البيانات الصحيحة");
+            }
+           
+        });
+        $(document).on('click', 'a.deleteItem', function (e) {
+            e.preventDefault();
+            var wantedVal = 0;
+            var $self = $(this);
+            if ($(this).attr('data-itemId') == "0") {
+                $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                    $(this).remove();
+                    var count = $("#txt_studentCount").val();
+                    $("#txt_studentCount").val(count-1);
+                });
+            }
+        });
+
+    </script>
+
+}

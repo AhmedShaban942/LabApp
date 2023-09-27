@@ -1,0 +1,218 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.Item>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.Report.TransferCustody;
+}
+<div hidden id="download">
+    <a herf="" class="btn btn-primary" id="print">@Laboratories.Web.Resources.General.download</a>
+</div>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@Laboratories.Web.Resources.Report.TransferCustody</h5>
+
+                </div>
+                <br />
+                <div class="modal-body">
+                    <input type="hidden" id="itm_id" name="itm_id" />
+                    <input type="hidden" id="itm_code" name="itm_code" />
+                    <div class="col-md-12">
+                        <label class="control-label col-md-2">
+                            @Laboratories.Web.Resources.General.arName
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" name="itm_name" id="itm_name" readonly class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="control-label col-md-2">
+                            @Laboratories.Web.Resources.Item.itm_presentQty
+                        </label>
+                        <div class="col-md-10">
+                            <input type="hidden"  name="presentQty" id="presentQty" />
+                            <input type="number" readonly name="itm_presentQty" id="itm_presentQty" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="control-label col-md-2">
+                            @Laboratories.Web.Resources.Item.TransferableQty
+                        </label>
+                        <div class="col-md-10">
+                            <input type="number" name="itm_transferQty" id="transferQty" class="form-control" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="TransferItem()">@Laboratories.Web.Resources.General.transfer</button>
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">@Laboratories.Web.Resources.General.close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr />
+    <h2 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Items </strong>
+    </h2>
+
+  
+    <hr />
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Laboratories.Web.Resources.Item.itm_code
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.General.arName
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.General.enName
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.Item.itm_type
+                    </th>
+               
+                    <th>
+                        @Laboratories.Web.Resources.Item.itm_presentQty
+                    </th>
+                    <th>
+                        @Laboratories.Web.Resources.Item.itm_unit
+                    </th>
+
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.itm_code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.itm_arName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.itm_enName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.itm_type)
+                        </td>
+                
+                        <td>
+                            @Html.DisplayFor(modelItem => item.itm_presentQty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.itm_Unit.unt_arName)
+                        </td>
+
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-id="@item.Id" data-code="@item.itm_code" data-name="@item.itm_arName" data-quntity="@item.itm_presentQty">نقل عهدة</button>
+                       </td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+    <br />
+    <!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("GetTransferCustody",
+        new { page, schoolId1 = Session["ScoolId1"], schoolId2 = Session["ScoolId2"] }))
+    @section scripts{
+
+        <script>
+            $('#myModal').on('show.bs.modal', function (event) {
+                 var button = $(event.relatedTarget); 
+                var name = button.data('name');
+                var id = button.data('id');
+                var code = button.data('code');
+                var Qty = button.data('quntity');
+                $("#itm_name").val(name);
+                $("#itm_id").val(id);
+                $("#itm_code").val(code);
+                $("#itm_presentQty").val(Qty);
+                $("#presentQty").val(Qty);
+            });
+            $("#transferQty").on('change keyup paste mouseup', function () {
+                var existQty = 0;
+                var transferQty = 0;
+                if (Number($("#transferQty").val())<0) {
+                    $("#transferQty").val($("#presentQty").val())
+                }
+                if (Number($("#presentQty").val()) > 0 ) {
+                    existQty = $("#presentQty").val();
+                    transferQty = $("#transferQty").val();
+                    if (Number(transferQty) <= Number(existQty)) {
+                        existQty = existQty - transferQty;
+                        $("#itm_presentQty").val(existQty)
+                    }
+                    else if (Number(transferQty) > Number(existQty)) {
+                   
+                        alert("الكمية المنقولة اكثر من الموجودة");
+                        $("#transferQty").val($("#presentQty").val())
+                    }
+
+                }
+  
+         
+
+
+            });
+            function TransferItem() {
+
+                if (Number($("#transferQty").val()) <= Number($("#presentQty").val())) {
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        url: '../Report/EditTransferCustody?code=' + $("#itm_code").val() + '&presentQty=' + $("#itm_presentQty").val() + '&transferQty=' + $("#transferQty").val() + ' ',
+                        success: function (data, textStatus, xhr) {
+                            if (data == "0") {
+                                alert("حدث خطأ فى نقل العهدة");
+                            }
+                            else if (data== "2") {
+                                alert(" يجب ان تكون المدرسة من نفس قسم المدرسة المنقول منها الصنف");
+                            }
+                            else {
+        
+                                $("#print").attr('href', '../Report/DownloadTransferedItem?qty=' + $("#transferQty").val() + '&itm_name=' + $("#itm_code").val() + '');
+                         
+                                $('#myModal').modal('hide');
+                                alert("تم نقل العهدة");
+                                document.getElementById('print').click();
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 6000);
+                                
+                            }
+
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            alert('Error in Operation');
+                        }
+                    });
+                }
+                else {
+                    alert("الكمية المنقولة اكثر من الموجودة");
+                }
+            }
+        </script>
+
+    }

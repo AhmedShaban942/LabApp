@@ -1,0 +1,102 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.ScheduleHed>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.labTable;
+}
+
+<hr />
+<hr />
+<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.labTable </strong>
+</h2>
+
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "Schedule", null, new { @class = "btn btn-info", @target = "_blank" })
+
+</p>
+<p>
+    
+
+</p>
+@using (Html.BeginForm())
+{
+<div class="form-group">
+    <label class="control-label col-md-2">
+        @Laboratories.Web.Resources.General.Search
+    </label>
+    <div class="col-md-6">
+        <input type="text" name="SearchString" class="form-control" />
+
+    </div>
+    <div class="col-md-2">
+
+        <input type="submit" value="@Laboratories.Web.Resources.General.Search" class="btn btn-primary" />
+    </div>
+    <div class="col-md-2">
+
+        @Html.ActionLink(@Laboratories.Web.Resources.General.printAll, "PrintAll", "Schedule", null, new { @class = "btn btn-warning" })
+    </div>
+
+</div>
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+ 
+}
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+
+                <th>
+                    @Laboratories.Web.Resources.LabTable.teacherName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.Item.itm_term
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.LabTable.lessonCount
+                </th>
+                
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.schd_teacher.tech_arName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.schd_chapter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.schd_lessonCount)
+                </td>
+
+                <td>
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Details", new { id = item.schd_teachId }, new { @class = "btn btn-primary", @target = "_blank" })
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.schd_teachId }, new { @class = "btn btn-info", @target = "_blank" })
+
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.schd_teachId }, new { @class = "btn btn-danger" })
+                    
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Print, "Print", new { id = item.schd_teachId }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+<br />
+<!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

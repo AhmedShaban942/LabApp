@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\الشيخ عبد الفتاح\2023-07-22\LaboratoriesSLN\Laboratories.Web\obj\Release\Package\PackageTmp" />
+  <setAcl path="D:\الشيخ عبد الفتاح\2023-07-22\LaboratoriesSLN\Laboratories.Web\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\الشيخ عبد الفتاح\2023-07-22\LaboratoriesSLN\Laboratories.Web\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

@@ -1,0 +1,138 @@
+﻿@model Laboratories.Domain.ScreenRole
+<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">   @Laboratories.Web.Resources.General.Screens</strong>
+</h2>
+<hr />
+<div>
+
+    <form id="NewOrderForm">
+        <div class="form-horizontal">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            @Laboratories.Web.Resources.General.Roles
+                        </label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("role_id", null, htmlAttributes: new { @class = "form-control selector", @id = "role_id" })
+                            @Html.ValidationMessageFor(model => model.role_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <hr />
+        <div class="form-group">
+  
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="btn btn-primary  check" id="checkAll"> @Laboratories.Web.Resources.General.checkAll
+                </label>
+            </div>
+
+      </div>
+
+
+            <hr />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        @Laboratories.Web.Resources.General.Screens
+                    </label>
+                    <div class="col-md-10">
+                        @*@Html.DropDownList("screen_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.screen_id, "", new { @class = "text-danger" })*@
+                        @foreach (var Retrieval in ViewBag.screen_id)
+                        {
+                            <div class="col-md-4" id="screen_id">
+                                <ul class="list-group list-group-light">
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1 check" type="checkbox" value="@Retrieval.Value" aria-label="..." />
+                                        <h4>@Retrieval.Text</h4>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+
+
+
+                        }
+
+                    </div>
+
+
+                </div>
+
+            </div>
+    </form>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input id="SaveRole" type="submit" value="@Laboratories.Web.Resources.General.Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</div>
+<br />
+
+
+@section Scripts {
+
+
+
+    <script type="text/javascript">
+
+      
+        $("#checkAll").click(function () {
+    $(".check").prop('checked', $(this).prop('checked'));
+});
+
+
+        $(document).ready(function () {
+            $('#SaveRole').click(function () {
+                var roleId = $("#role_id").val();
+                var screens = [];
+                $('#screen_id input:checked').each(function () {
+                    screens.push(this.value);
+                });
+                if (screens.length > 0) {
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        url: '../ScreenRoles/SaveScreenRoles?role_id=' + roleId  + ' ',
+                        data: JSON.stringify(screens),
+                        success: function (data, textStatus, xhr) {
+                            if (data == "0") {
+                                alert("خطأ فى الاضافة ");
+                            }
+                            else
+                                window.location.href = '/ScreenRoles/Index';
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            alert('Error in Operation');
+                        }
+                    });
+                }
+                else
+                    alert("لم تقم باخيار الشاشات");
+
+            });
+        });
+
+
+
+    </script>
+
+
+
+}
+
+

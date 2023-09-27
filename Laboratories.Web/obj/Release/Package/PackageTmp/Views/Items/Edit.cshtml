@@ -1,0 +1,362 @@
+﻿@model Laboratories.Domain.Item
+
+
+@{
+    ViewBag.Title = @Laboratories.Web.Resources.General.Edit;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:red">@Laboratories.Web.Resources.General.Items </strong>
+    </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.itm_year)
+    <input type="hidden" id="damgqty" value=@Model.itm_unValidQty />
+    <input type="hidden" id="presentQtyBase" value=@Model.itm_presentQty />
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_code
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_code, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_code, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.arName
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_arName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.itm_arName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.enName
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_enName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_enName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_desc
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_desc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_desc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_type
+        </label>
+        <div class="col-md-10">
+            <input type="text" value="@Model.itm_type" readonly class="form-control" />
+            @Html.HiddenFor(model => model.itm_type, htmlAttributes: new { @class = "form-control" })
+            @*@Html.EnumDropDownListFor(model => model.itm_type, htmlAttributes: new { @class = "form-control", @disabled = "disabled " })*@
+            @Html.ValidationMessageFor(model => model.itm_type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+
+            @Laboratories.Web.Resources.Item.itm_avalableMethod
+        </label>
+        <div class="col-md-10">
+            <input type="text" value="@Model.itm_availableMethod" readonly class="form-control" />
+            @Html.HiddenFor(model => model.itm_availableMethod, htmlAttributes: new { @class = "form-control" })
+            @*@Html.EnumDropDownListFor(model => model.itm_availableMethod, htmlAttributes: new { @class = "form-control", @disabled = "disabled " })*@
+            @Html.ValidationMessageFor(model => model.itm_availableMethod, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_isExixting
+        </label>
+        <div class="col-md-10">
+
+            @Html.EnumDropDownListFor(model => model.itm_isExisting, htmlAttributes: new { @class = "form-control", @id = "itm_isExisting" })
+            @Html.ValidationMessageFor(model => model.itm_isExisting, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group" id="itm_presentQty">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_presentQty
+        </label>
+        <div class="col-md-10">
+            <input type="number" name="itm_presentQty" id="presentQty" class="form-control" value="@Model.itm_presentQty" />
+            @*@Html.EditorFor(model => model.itm_presentQty, new { htmlAttributes = new { @class = "form-control", @id = "presentQty" } })*@
+            @Html.ValidationMessageFor(model => model.itm_presentQty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" id="itm_unValidQty">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.damagedQty
+        </label>
+        <div class="col-md-10">
+            <input type="number" name="itm_unValidQty" id="unValidQty" class="form-control" value="@Model.itm_unValidQty" />
+            @*@Html.EditorFor(model => model.itm_unValidQty, new { htmlAttributes = new { @class = "form-control", @id = "unValidQty" } })*@
+            @Html.ValidationMessageFor(model => model.itm_unValidQty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_unit
+        </label>
+        <div class="col-md-10">
+            @Html.DropDownList("itm_unitId", null, htmlAttributes: new { @class = "form-control selector" })
+            @Html.ValidationMessageFor(model => model.itm_unitId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="itm_ValidState">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.validState
+        </label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EnumDropDownListFor(model => model.itm_ValidState, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.itm_ValidState, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" id="itm_completionYear">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.completionYear
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_completionYear, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_completionYear, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="itm_excessiveQty">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.excessiveQty
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_excessiveQty, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_excessiveQty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.note
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_note, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_note, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.over
+        </label>
+        <div class="col-md-10">
+            <div>
+                <input type="text" value="@Model.itm_over" readonly class="form-control" />
+                @Html.HiddenFor(model => model.itm_over, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.itm_over, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" id="sugQty" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_sugQty
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_sugQty, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_sugQty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_chapter
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.itm_chapter, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.itm_chapter, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_level
+        </label>
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.itm_level, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.itm_level, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_department
+        </label>
+        <div class="col-md-10">
+            <input type="text" value="@Model.itm_department" readonly class="form-control" />
+            @Html.HiddenFor(model => model.itm_department, htmlAttributes: new { @class = "form-control" })
+
+            @*@Html.EnumDropDownListFor(model => model.itm_department, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })*@
+            @Html.ValidationMessageFor(model => model.itm_department, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.isActive
+        </label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsAvtive)
+                @Html.ValidationMessageFor(model => model.IsAvtive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_term
+        </label>
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.itm_term, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.itm_term, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.Schools
+        </label>
+        <div class="col-md-10">
+            @Html.DropDownList("itm_schId", null, htmlAttributes: new { @class = "form-control selector", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.itm_schId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Edit" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</div>
+@section scripts{
+    <script>
+
+
+        if ($("#itm_isExisting").val() == 1) {
+            $("#sugQty").show();
+            $("#itm_presentQty").hide();
+            $("#itm_ValidState").hide();
+            $("#itm_completionYear").hide();
+            $("#itm_excessiveQty").hide();
+        }
+        else {
+            $("#sugQty").hide();
+            $("#itm_presentQty").show();
+            $("#itm_ValidState").show();
+            $("#itm_completionYear").show();
+            $("#itm_excessiveQty").show();
+            $("#itm_unValidQty").show();
+        }
+        $("#itm_isExisting").change(function () {
+            if ($("#itm_isExisting").val() == 1) {
+                $("#sugQty").show();
+                $("#itm_presentQty").hide();
+                $("#itm_ValidState").hide();
+                $("#itm_completionYear").hide();
+                $("#itm_unValidQty").hide();
+
+            }
+            else {
+                $("#sugQty").hide();
+                $("#itm_presentQty").show();
+                $("#itm_ValidState").show();
+                $("#itm_completionYear").show();
+                $("#itm_excessiveQty").show();
+                $("#itm_unValidQty").show();
+            }
+
+
+        });
+
+
+
+        $("#unValidQty").on('change keyup paste mouseup', function () {
+            var damge = 0;
+            var unvalid = 0;
+            var present = 0;
+            if ($("#damgqty").val() > 0) {
+                damge = $("#damgqty").val();
+                unvalid = $("#unValidQty").val();
+                present = $("#presentQtyBase").val();
+                if (Number(unvalid) > Number(damge)) {
+                    if (Number(unvalid) < Number(present)) {
+                        present = present - (unvalid - damge);
+                        $("#presentQty").val(present)
+                    }
+                  
+                }
+                else if (Number(unvalid) < Number(damge)){
+                    $("#unValidQty").val($("#damgqty").val());
+             /*       alert("لا يمكن انقاص الكمية التالفة");*/
+                }
+
+            }
+            else if ($("#damgqty").val() == 0) {
+                unvalid = $("#unValidQty").val();
+                present = $("#presentQtyBase").val();
+                if (Number(unvalid) > Number(damge)) {
+                    if (Number(unvalid) < Number(present)) {
+                        present = present - unvalid;
+                        $("#presentQty").val(present)
+                    }
+
+                }
+            }
+            else {
+                $("#presentQty").val($("#presentQtyBase").val())
+               
+            }
+          
+
+        });
+    </script>
+}

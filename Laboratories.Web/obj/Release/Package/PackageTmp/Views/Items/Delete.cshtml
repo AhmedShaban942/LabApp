@@ -1,0 +1,143 @@
+﻿@model Laboratories.Domain.Item
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Delete;
+}
+
+<hr />
+<hr />
+
+<h3> @Laboratories.Web.Resources.General.delete_</h3>
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Items </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_code)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_type)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_department
+        </dt>
+
+
+        @*<dt>
+            @Laboratories.Web.Resources.Item.itm_schol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_School.sch_arName)
+        </dd>*@
+
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_department)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_avalableMethod
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_availableMethod)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_isExixting
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_isExisting)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_presentQty
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_presentQty)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_unit
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_Unit.unt_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Item.validState
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_ValidState)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.Item.completionYear
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_completionYear)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.Item.over
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_over)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.Item.note
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_note)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Item.itm_sugQty
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itm_sugQty)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Delete" class="btn btn-danger" />
+
+            @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,113 @@
+﻿@model Laboratories.Domain.Experiments
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+<style>
+    dd.scroll {
+  
+        height: 100PX;
+       
+        overflow: scroll;
+    }
+
+
+</style>
+
+<div class="col-md-12">
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.experimentName </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentCourse
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_course.cors_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_enName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentType
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_tpye)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentPage
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_page)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentchapter
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_chapter)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentTools
+        </dt>
+        <dd>
+            @*@Html.DisplayFor(model => model.expr_tools)*@
+            <textarea name="expr_tools" id="expr_tools" class="form-control">@this.Model.expr_tools</textarea>
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.doingOrNot
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_state)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentTeacherName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_teacher.tech_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.Experiment.experimentTeacherSignetcher
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expr_teacherSignature)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</p>

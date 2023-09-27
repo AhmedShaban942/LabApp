@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "CustomReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">@Laboratories.Web.Resources.Report.transferfromscooltoanother </strong>
+</h4>
+<hr />
+<div class="col-md-12">
+    <div class="col-md-6">
+        <h4 align="center" class="panel-title ">
+            <strong style="text-align: center; color: slategray">@Laboratories.Web.Resources.Report.transferfrom</strong>
+        </h4>
+        <br />
+        <br />
+
+        <div class="form-horizontal">
+
+            <hr />
+
+            <div class="form-group" id="companygrp">
+                <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Company</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("company", null, htmlAttributes: new { @class = "form-control selector", @id = "companyid1" })
+
+                </div>
+            </div>
+            <div class="form-group" id="complexgrp">
+                <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Complexes</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("complex", null, htmlAttributes: new { @class = "form-control selector", @id = "complexid1" })
+
+                </div>
+            </div>
+            <div class="form-group" id="schoolgrp">
+                <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Schools</label>
+                <div class="col-md-10">
+                    <select id="schoolid1" class="form-control selector">
+                      
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4 align="center" class="panel-title ">
+            <strong style="text-align:center;color:slategray">@Laboratories.Web.Resources.Report.transferTo</strong>
+        </h4>
+        <br />
+        <br />
+
+
+        <div class="form-horizontal">
+
+            <hr />
+
+            <div class="form-group" id="companygrp">
+                <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Company</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("company", null, htmlAttributes: new { @class = "form-control selector", @id = "companyid2" })
+
+                </div>
+            </div>
+            <div class="form-group" id="complexgrp">
+                <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Complexes</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("complex", null, htmlAttributes: new { @class = "form-control selector", @id = "complexid2" })
+
+                </div>
+            </div>
+            <div class="form-group" id="schoolgrp">
+                <label class="control-label col-md-2">@Laboratories.Web.Resources.General.Schools</label>
+                <div class="col-md-10">
+                    <select id="schoolid2" class="form-control selector">
+                     
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+
+<div>
+    <a herf="" class="btn btn-success" id="show">@Laboratories.Web.Resources.Report.displayItem</a>
+    <a herf="" class="btn btn-primary" id="print">@Laboratories.Web.Resources.Report.downloadItem</a>
+</div>
+
+@section scripts{
+    <script>
+
+        var complexName1 = null;
+        var complexName2 = null;
+        var schoolName1 = null;
+        var schoolName2 = null;
+      
+        GetSchools1($("#complexid1").val());
+        GetSchools2($("#complexid2").val());
+        $("#complexid1").change(function () {
+            GetSchools1($("#complexid1").val());
+            complexName = $("#complexid1").val();
+        });
+        $("#complexid2").change(function () {
+            GetSchools2($("#complexid2").val());
+            complexName = $("#complexid2").val();
+        });
+
+
+        $("#schoolid1").change(function () {
+            schoolName1 = $("#schoolid1").val();
+
+        });
+        $("#schoolid2").change(function () {
+            schoolName2 = $("#schoolid2").val();
+        });
+        $("#print").click(function (e) {
+            if (schoolName1 > 0 && schoolName2 > 0) {
+                $("#print").attr('href', '../Report/DownloadTransferCustody?schoolId1=' + schoolName1 + '&schoolId2=' + schoolName2 + '');
+
+            }
+            else {
+                alert("الرجاء اختيار المدرسة");
+            }
+         
+        });
+        $("#show").click(function (e) {
+            if (schoolName1 > 0 && schoolName2 > 0) {
+                $("#show").attr('href', '../Report/GetTransferCustody?schoolId1=' + schoolName1 + '&schoolId2=' + schoolName2 + '');
+            }
+            else {
+                alert("الرجاء اختيار المدرسة");
+            }
+        });
+
+        function GetSchools1(complex_Id) {
+
+            $("#schoolid1").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Report/GetSchools?complex_Id=' + complex_Id + '',
+                success: function (data, textStatus, xhr) {
+
+                    $("#schoolid1").append('<option>اختر المدرسة</option>');
+                    for (var i in data) {
+                        $("#schoolid1").append('<option value="' + data[i].Id + '">' + data[i].sch_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+        function GetSchools2(complex_Id) {
+            $("#schoolid2").empty();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '../Report/GetSchools?complex_Id=' + complex_Id + '',
+                success: function (data, textStatus, xhr) {
+  
+                    $("#schoolid2").append('<option>اختر المدرسة</option>');
+                    for (var i in data) {
+                        $("#schoolid2").append('<option value="' + data[i].Id + '">' + data[i].sch_arName + '</option>');
+
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Error in Operation');
+                }
+            });
+        }
+    </script>
+}

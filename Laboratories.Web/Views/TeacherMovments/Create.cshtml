@@ -1,0 +1,90 @@
+﻿@model Laboratories.Domain.TeacherMovment
+
+@{
+    ViewBag.Title = @Laboratories.Web.Resources.General.Create;
+}
+
+<h2> @Laboratories.Web.Resources.General.Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:red">@Laboratories.Web.Resources.LabTable.teacherMovment </strong>
+    </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.LabTable.teacherName
+        </label>
+        <div class="col-md-10">
+            @Html.DropDownList("mov_techId", null, htmlAttributes: new { @class = "form-control selector" })
+            @Html.ValidationMessageFor(model => model.mov_techId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.LabTable.lessonCount
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mov_lessonCount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mov_lessonCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.LabTable.monthNumberr
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mov_monthNumberr, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mov_monthNumberr, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.LabTable.weekNumber
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mov_weekNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mov_weekNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.LabTable.lessonCountActual
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mov_lessonCountActual, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mov_lessonCountActual, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.note
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mov_note, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mov_note, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

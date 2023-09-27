@@ -1,0 +1,159 @@
+﻿<title>Polar Area Chart</title>
+
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
+
+<div class="">
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+
+                <h2>
+                    @Laboratories.Web.Resources.General.ItemReports
+                </h2>
+
+                <div id="canvas-holder">
+
+                    <canvas id="chart-area"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <h2>
+                    @Laboratories.Web.Resources.General.LaboratoryBasisReports
+
+                </h2>
+                <div id="canvas-holder2">
+                    <canvas id="chart-area2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var randomScalingFactor = function () {
+        return Math.round(Math.random() * 100);
+    };
+    var randomColorFactor = function () {
+        return Math.round(Math.random() * 255);
+    };
+    var randomColor = function (opacity) {
+        return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+    };
+
+    var config = {
+        data: {
+            datasets: [{
+                data: [
+                    @ViewBag.presentItemValid,
+                    @ViewBag.presentItemUnValid,
+                       @ViewBag.wantedItem,
+                    @ViewBag.canAvalableItem,
+                ],
+                backgroundColor: [
+                    "#1cc88a",
+                    "#f6c23e",
+                    "#e74a3b",
+                    "#949FB1",
+
+                ],
+                label: 'My dataset' // for legend
+            }],
+            labels: [
+                "@Laboratories.Web.Resources.Item.itemPresent",
+                "@Laboratories.Web.Resources.Report.UnValidItemReport",
+                "@Laboratories.Web.Resources.Report.item_wantedRequired",
+                "@Laboratories.Web.Resources.Report.item_wantedCanavalable"
+            ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: '  @Laboratories.Web.Resources.General.ItemReports'
+            },
+            scale: {
+                ticks: {
+                    beginAtZero: true
+                },
+                reverse: false
+            },
+            animation: {
+                animateRotate: false,
+                animateScale: true
+            }
+        }
+    };
+    var configLab = {
+        data: {
+            datasets: [{
+                data: [
+                    @ViewBag.presentItemLabValid,
+               
+                       @ViewBag.wantedItemLab,
+                 
+                ],
+                backgroundColor: [
+                    "#1cc88a",
+            
+                    "#e74a3b",
+               
+
+                ],
+                label: 'My dataset' // for legend
+            }],
+            labels: [
+                "@Laboratories.Web.Resources.Item.itemPresent",
+          
+                "@Laboratories.Web.Resources.Item.itemUnAvalable"
+
+            ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: '  @Laboratories.Web.Resources.General.LaboratoryBasisReports'
+            },
+            scale: {
+                ticks: {
+                    beginAtZero: true
+                },
+                reverse: false
+            },
+            animation: {
+                animateRotate: false,
+                animateScale: true
+            }
+        }
+    };
+
+    window.onload = function () {
+        var ctx = document.getElementById("chart-area");
+        window.myPolarArea = Chart.PolarArea(ctx, config);
+        var ctx2 = document.getElementById("chart-area2");
+        window.myPolarArea = Chart.PolarArea(ctx2, configLab);
+
+
+
+    };
+
+
+</script>
+

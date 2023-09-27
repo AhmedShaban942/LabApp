@@ -1,0 +1,182 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.Item>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.Items;
+}
+
+<hr />
+<hr />
+<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.General.Items </strong>
+</h2>
+
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "Items", null, new { @class = "btn btn-info" })
+
+</p>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_search
+        </label>
+        <div class="col-md-8">
+            <input type="text" name="SearchString" class="form-control" />
+
+        </div>
+        <div class="col-md-2">
+
+            <input type="submit" value="@Laboratories.Web.Resources.General.Search" class="btn btn-primary" />
+        </div>
+
+    </div>
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+ 
+}
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+
+                <th>
+                    @Laboratories.Web.Resources.Item.itm_code
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.arName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.General.enName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.Item.itm_type
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.Item.itm_sugQty
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.Item.itm_presentQty
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.Item.itm_unit
+                </th>
+
+                @*<th>
+            @Laboratories.Web.Resources.Item.itm_chapter
+        </th>
+        <th>
+            @Laboratories.Web.Resources.Item.itm_department
+        </th>
+        <th>
+            @Laboratories.Web.Resources.Item.itm_level
+        </th>*@
+
+                @*
+        <th>
+            @Html.DisplayNameFor(model => model.itm_availableMethod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itm_isExisting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itm_presentQty)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.itm_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itm_term)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itm_School.sch_arName)
+        </th>*@
+                @*<th>
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>*@
+                @*<th>
+            @Html.DisplayNameFor(model => model.IsAvtive)
+        </th>*@
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itm_code)
+                </td>
+                <td>
+
+                    @{
+                        var rate = item.itm_sugQty / 5;
+                        var color = "";
+                        if (item.itm_presentQty < rate)
+                        {
+                            color = "#e74a3b";
+                        }
+                        if (item.itm_presentQty == rate)
+                        {
+                            color = "#f6c23e";
+                        }
+                        if (item.itm_presentQty > rate)
+                        {
+                            color = "#1cc88a";
+                        }
+                        else
+                        {
+                            color = "#e74a3b";
+                        }
+
+                    }
+                    <div style='background-color: @(color); color:aliceblue'>@item.itm_arName</div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itm_enName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itm_type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itm_sugQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itm_presentQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itm_Unit.unt_arName)
+                </td>
+
+                <td>
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = item.Id }, new { @class = "btn btn-primary", @target = "_blank" })
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+    <br />
+    <!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

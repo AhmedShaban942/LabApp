@@ -1,0 +1,91 @@
+﻿@model Laboratories.Domain.AppSeting
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AppSeting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.companyNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.companyNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.compelexNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.compelexNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schoolNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schoolNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAvtive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAvtive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

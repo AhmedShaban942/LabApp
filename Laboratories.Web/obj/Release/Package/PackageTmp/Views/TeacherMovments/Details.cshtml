@@ -1,0 +1,71 @@
+﻿@model Laboratories.Domain.TeacherMovment
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+
+<hr />
+<hr />
+
+<h3> @Laboratories.Web.Resources.General.details</h3>
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.LabTable.teacherMovment </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Laboratories.Web.Resources.LabTable.teacherName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_Teacher.tech_arName)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.LabTable.lessonCount
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_lessonCount)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.LabTable.lessonCountActual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_lessonCountActual)
+        </dd>
+
+        <dt>
+            @Laboratories.Web.Resources.LabTable.monthNumberr
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_monthNumberr)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.LabTable.weekNumber
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_weekNumber)
+        </dd>
+        <dt>
+            @Laboratories.Web.Resources.General.note
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mov_note)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</p>

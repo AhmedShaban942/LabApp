@@ -1,0 +1,142 @@
+﻿@model Laboratories.Domain.Student
+
+@{
+    ViewBag.Title = @Laboratories.Web.Resources.General.Edit;
+}
+
+<h2> @Laboratories.Web.Resources.General.Edit</h2>
+
+@using (Html.BeginForm("Edit", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:red">@Laboratories.Web.Resources.StudentRates.students </strong>
+    </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.arName
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.std_arName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.std_arName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" hidden>
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.StudentRates.studentId
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.std_IdentityNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.std_IdentityNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.enName
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.std_enName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.std_enName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.phon
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.std_phon, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.std_phon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.email
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.std_email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.std_email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.address
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.std_address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.std_address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_department
+        </label>
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.std_department, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.std_department, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.Item.itm_level
+        </label>
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.std_level, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.std_level, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.StudentRates.levelRecord
+        </label>
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.std_levelRecord, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.std_levelRecord, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.Schools
+        </label>
+
+        <div class="col-md-10">
+            @Html.DropDownList("std_schId", null, htmlAttributes: new { @class = "form-control selector" })
+            @Html.ValidationMessageFor(model => model.std_schId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Laboratories.Web.Resources.General.photo
+        </label>
+
+        <div class="col-md-10">
+            <input type="file" name="std_image" accept="image/png, image/gif, image/jpeg"/>
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@Laboratories.Web.Resources.General.Edit" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</div>
+

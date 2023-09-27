@@ -1,0 +1,115 @@
+﻿
+<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">   @Laboratories.Web.Resources.StudentRates.gradingMonitoring</strong>
+</h2>
+<hr />
+<div>
+    <form id="NewOrderForm">
+        <div class="form-horizontal">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.schooltype
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_type" id="txt_type" class="form-control">
+                                <option value="0">بنين</option>
+                                <option value="1">بنات</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.schooldepartment
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_day" id="txt_department" class="form-control">
+                                <option value="0">ابتدائى</option>
+                                <option value="1">متوسط</option>
+                                <option value="2">ثانوى</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.itm_term
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_term" id="txt_term" class="form-control">
+                                <option value="0">الاول</option>
+                                <option value="1">الثانى</option>
+                                <option value="2">الثالث</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.StudentRates.exams
+                        </label>
+
+                        <div class="col-md-6">
+                            @Html.DropDownList("stdGH_examId", null, htmlAttributes: new { @class = "form-control selector", @id = "examid" })
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">
+                        </label>
+                        <div class="col-md-6">
+    
+                            <a herf="" class="btn btn-primary" id="print">@Laboratories.Web.Resources.General.download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+      
+        </div>
+
+    </form>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        $("#print").click(function (e) {
+
+            var department_Id = $("#txt_department").val();
+            var type = $("#txt_type").val();
+            var term = $("#txt_term").val();
+            var exam = $("#examid").val();
+            $("#print").attr('href', '../StudentExamesGrade/PrintByExamId?type=' + type + '&department=' + department_Id + '&term=' + term + '&exam=' + exam  + '');
+
+            
+
+        });
+              
+
+
+
+
+    </script>
+
+}

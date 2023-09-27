@@ -1,0 +1,53 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Laboratories.Domain.Exam>
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.StudentRates.exams;
+}
+
+<hr />
+<hr />
+<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.StudentRates.exams </strong>
+</h2>
+<p>
+    @Html.ActionLink(@Laboratories.Web.Resources.General.CreateNew, "Create", "Exams", null, new { @class = "btn btn-info" })
+</p>
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <tr>
+            <th>
+                @Laboratories.Web.Resources.General.arName
+            </th>
+
+            <th>
+                @Laboratories.Web.Resources.General.enName
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.exm_arName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.exm_enName)
+                </td>
+                <td>
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.details, "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink(@Laboratories.Web.Resources.General.Delete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<br />
+<!--Code to show curent page and page number-->
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))

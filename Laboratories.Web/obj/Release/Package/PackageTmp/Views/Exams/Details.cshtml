@@ -1,0 +1,41 @@
+﻿@model Laboratories.Domain.Exam
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+
+
+
+<div>
+    <h4 align="center" class="panel-title ">
+        <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.StudentRates.exams </strong>
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Laboratories.Web.Resources.General.arName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exm_arName)
+        </dd>
+
+
+        <dt>
+            @Laboratories.Web.Resources.General.enName
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exm_enName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+
+    @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+</p>
+

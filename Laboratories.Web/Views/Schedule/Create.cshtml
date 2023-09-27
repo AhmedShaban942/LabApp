@@ -1,0 +1,533 @@
+﻿<h2 align="center" class="panel-title ">
+    <strong style="text-align:center;color:red">   @Laboratories.Web.Resources.General.labTable</strong>
+</h2>
+<hr />
+<div class="col-md-12">
+    <form id="NewOrderForm">
+        <div class="form-horizontal">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.General.Teatchers
+                        </label>
+                        <div class="col-md-6">
+                            @Html.DropDownList("Teachers", null, htmlAttributes: new { @class = "form-control selector", @id = "txt_teatcher" })
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.day
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_day" id="txt_day" class="form-control">
+                                <option value="1">الاحد</option>
+                                <option value="2">الاثنين</option>
+                                <option value="3">الثلاثاء</option>
+                                <option value="4">الاربعاء</option>
+                                <option value="5">الخميس</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.Item.itm_term
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_term" id="txt_term" class="form-control">
+                                <option value="0">الاول</option>
+                                <option value="1">الثانى</option>
+                                <option value="2">الثالث</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 style="text-align: center; margin-top: 10px; "><b> @Laboratories.Web.Resources.LabTable.crateTeatchertable</b></h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.lessonNum
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_lessonNum1" id="txt_lessonNum1" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1"> الاولى</option>
+                                <option value="2">الثانية</option>
+                                <option value="3">الثالثة</option>
+                                <option value="4">الرابعة</option>
+                                <option value="5">الخامسة</option>
+                                <option value="6">السادسة</option>
+                                <option value="7">السابعة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.subject
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_subject1" id="txt_subject1" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1">علوم</option>
+                                <option value="2"> فيزياء</option>
+                                <option value="3">كيمياء</option>
+                                <option value="4">احياء</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.lessonNum
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_lessonNum2" id="txt_lessonNum2" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1"> الاولى</option>
+                                <option value="2">الثانية</option>
+                                <option value="3">الثالثة</option>
+                                <option value="4">الرابعة</option>
+                                <option value="5">الخامسة</option>
+                                <option value="6">السادسة</option>
+                                <option value="7">السابعة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.subject
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_subject2" id="txt_subject2" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1">علوم</option>
+                                <option value="2"> فيزياء</option>
+                                <option value="3">كيمياء</option>
+                                <option value="4">احياء</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.lessonNum
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_lessonNum3" id="txt_lessonNum3" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1"> الاولى</option>
+                                <option value="2">الثانية</option>
+                                <option value="3">الثالثة</option>
+                                <option value="4">الرابعة</option>
+                                <option value="5">الخامسة</option>
+                                <option value="6">السادسة</option>
+                                <option value="7">السابعة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.subject
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_subject3" id="txt_subject3" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1">علوم</option>
+                                <option value="2"> فيزياء</option>
+                                <option value="3">كيمياء</option>
+                                <option value="4">احياء</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.lessonNum
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_lessonNum4" id="txt_lessonNum4" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1"> الاولى</option>
+                                <option value="2">الثانية</option>
+                                <option value="3">الثالثة</option>
+                                <option value="4">الرابعة</option>
+                                <option value="5">الخامسة</option>
+                                <option value="6">السادسة</option>
+                                <option value="7">السابعة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.subject
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_subject4" id="txt_subject4" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1">علوم</option>
+                                <option value="2"> فيزياء</option>
+                                <option value="3">كيمياء</option>
+                                <option value="4">احياء</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.lessonNum
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_lessonNum5" id="txt_lessonNum5" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1"> الاولى</option>
+                                <option value="2">الثانية</option>
+                                <option value="3">الثالثة</option>
+                                <option value="4">الرابعة</option>
+                                <option value="5">الخامسة</option>
+                                <option value="6">السادسة</option>
+                                <option value="7">السابعة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.subject
+                        </label>
+                        <div class="col-md-6">
+                            <select name="txt_subject5" id="txt_subject5" class="form-control">
+                                <option selected value="0"></option>
+                                <option value="1">علوم</option>
+                                <option value="2"> فيزياء</option>
+                                <option value="3">كيمياء</option>
+                                <option value="4">احياء</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">
+                        </label>
+                        <div class="col-md-6">
+                            <a id="addToList" class="btn btn-primary">@Laboratories.Web.Resources.General.addToList</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr />
+            <div class="form-horizontal">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action" id="detailsTable">
+                        <thead>
+                            <tr>
+                                <th style="width:7%">@Laboratories.Web.Resources.LabTable.day</th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.lessonNum </th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.subject</th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.lessonNum </th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.subject</th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.lessonNum </th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.subject</th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.lessonNum </th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.subject</th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.lessonNum </th>
+                                <th style="width:9%">@Laboratories.Web.Resources.LabTable.subject</th>
+                                <th style="width:3%">@Laboratories.Web.Resources.General.Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detailsTableDet">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            @Laboratories.Web.Resources.LabTable.lessonCount
+                        </label>
+                        <div class="col-md-6">
+                            <input type="text" readonly class="form-control" required name="txt_lessonCount" id="txt_lessonCount" value="0">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                        </label>
+                        <div class="col-md-6">
+                            <button id="saveSchedule" type="submit" class="btn btn-primary">@Laboratories.Web.Resources.General.Save</button>
+                    
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        $("#addToList").click(function (e) {
+      
+            var lessonCount = 0;
+            e.preventDefault();
+            var day = $("#txt_day").val(),
+                lessonNum1 = $("#txt_lessonNum1").val(),
+                subject1 = $("#txt_subject1").val(),
+                lessonNum2 = $("#txt_lessonNum2").val(),
+                subject2 = $("#txt_subject2").val(),
+                lessonNum3 = $("#txt_lessonNum3").val(),
+                subject3 = $("#txt_subject3").val(),
+                lessonNum4 = $("#txt_lessonNum4").val(),
+                subject4 = $("#txt_subject4").val(),
+                lessonNum5 = $("#txt_lessonNum5").val(),
+                subject5 = $("#txt_subject5").val(),
+                dayText = $("#txt_day").children("option").filter(":selected").text(),
+                lessonNum1Text = $("#txt_lessonNum1").children("option").filter(":selected").text(),
+                subject1Text = $("#txt_subject1").children("option").filter(":selected").text(),
+                lessonNum2Text = $("#txt_lessonNum2").children("option").filter(":selected").text(),
+                subject2Text = $("#txt_subject2").children("option").filter(":selected").text(),
+                lessonNum3Text = $("#txt_lessonNum3").children("option").filter(":selected").text(),
+                subject3Text = $("#txt_subject3").children("option").filter(":selected").text(),
+                lessonNum4Text = $("#txt_lessonNum4").children("option").filter(":selected").text(),
+                subject4Text = $("#txt_subject4").children("option").filter(":selected").text(),
+                lessonNum5Text = $("#txt_lessonNum5").children("option").filter(":selected").text(),
+                subject5Text = $("#txt_subject5").children("option").filter(":selected").text(),
+                detailsTableBody = $("#detailsTable tbody");
+           
+            if (lessonNum1 > 0) {
+                lessonCount += 1;
+                if (subject1 == 0) {
+                    alert("اختر المادة");
+                    return 0;
+                }
+            }
+            if (lessonNum2 > 0) {
+                lessonCount += 1;
+                if (subject2 == 0) {
+                    alert("اختر المادة");
+                    return 0;
+                }
+            }
+            if (lessonNum3 > 0) {
+                lessonCount += 1;
+                if (subject3 == 0) {
+                    alert("اختر المادة");
+                    return 0;
+                }
+            }
+            if (lessonNum4 > 0) {
+                lessonCount += 1;
+                if (subject4 == 0) {
+                    alert("اختر المادة");
+                    return 0;
+                }
+            }
+            if (lessonNum5 > 0) {
+                lessonCount += 1;
+                if (subject5 == 0) {
+                    alert("اختر المادة");
+                    return 0;
+                }
+            }
+         
+            if (lessonNum1 > 0 || lessonNum2 > 0 || lessonNum3 > 0 || lessonNum4 > 0 || lessonNum5 > 0) {
+                if (lessonNum1>0) {
+                    if (lessonNum1 == lessonNum2 || lessonNum1 == lessonNum3 || lessonNum1 == lessonNum4 || lessonNum1 == lessonNum5){
+                        alert("اختيار خاطى نفس الحصة مختارة مسبقا ");
+                        return 0;
+                    }
+                }
+                if (lessonNum2> 0) {
+                    if (lessonNum2 == lessonNum1 || lessonNum2 == lessonNum3 || lessonNum2 == lessonNum4 || lessonNum2 == lessonNum5) {
+                        alert("اختيار خاطى نفس الحصة مختارة مسبقا ");
+                        return 0;
+                    }
+                }
+                if (lessonNum3 > 0) {
+                    if (lessonNum3 == lessonNum1 || lessonNum3 == lessonNum2 || lessonNum3 == lessonNum4 || lessonNum3 == lessonNum5) {
+                        alert("اختيار خاطى نفس الحصة مختارة مسبقا ");
+                        return 0;
+                    }
+                }
+
+                if (lessonNum4 > 0) {
+                    if (lessonNum4 == lessonNum1 || lessonNum4 == lessonNum2 || lessonNum4 == lessonNum3 || lessonNum4 == lessonNum5) {
+                        alert("اختيار خاطى نفس الحصة مختارة مسبقا ");
+                        return 0;
+                    }
+                }
+                if (lessonNum5 > 0) {
+                    if (lessonNum5 == lessonNum1 || lessonNum5 == lessonNum2 || lessonNum5 == lessonNum3 || lessonNum5 == lessonNum4) {
+                        alert("اختيار خاطى نفس الحصة مختارة مسبقا ");
+                        return 0;
+                    }
+                }
+                var ScheduleItem = '<tr><td style="display:none">' + day + '</td><td>' + dayText + '</td><td style="display:none">' + lessonNum1 + '</td><td>' + lessonNum1Text + '</td><td style="display:none">' + subject1 + '</td><td>' + subject1Text + '</td><td style="display:none">' + lessonNum2 + '</td><td>' + lessonNum2Text + '</td><td style="display:none">' + subject2 + '</td><td>' + subject2Text + '</td><td style="display:none">' + lessonNum3 + '</td><td>' + lessonNum3Text + '</td><td style="display:none">' + subject3 + '</td><td>' + subject3Text + '</td><td style="display:none">' + lessonNum4 + '</td><td>' + lessonNum4Text + '</td><td style="display:none">' + subject4 + '</td><td>' + subject4Text + '</td><td style="display:none">' + lessonNum5 + '</td><td>' + lessonNum5Text + '</td><td style="display:none">' + subject5 + '</td><td>' + subject5Text + '</td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem"><span class="glyphicon glyphicon-trash"></span></a></td></tr>';
+                detailsTableBody.append(ScheduleItem);
+
+
+                var old = parseFloat($("#txt_lessonCount").val());
+                $("#txt_lessonCount").val(lessonCount + old);
+                var table = document.getElementById('detailsTableDet');
+                var rowLength = table.rows.length;
+
+                for (var i = 0; i < rowLength; i += 1) {
+
+                    var row = table.rows[i];
+                    var _day = row.cells[0].innerText;
+                    var _lessonNum1 = row.cells[2].innerText;
+                    var _subject1 = row.cells[4].innerText;
+                    var _lessonNum2 = row.cells[6].innerText;
+                    var _subject2 = row.cells[8].innerText;
+                    var _lessonNum3 = row.cells[10].innerText;
+                    var _subject3 = row.cells[12].innerText;
+                    var _lessonNum4 = row.cells[14].innerText;
+                    var _subject4 = row.cells[16].innerText;
+                    var _lessonNum5 = row.cells[18].innerText;
+                    var _subject5 = row.cells[20].innerText;
+                }
+
+            }
+           
+
+
+
+           
+        });
+        $(document).on('click', 'a.deleteItem', function (e) {
+            e.preventDefault();
+            var lessonCount = 0;
+            var $self = $(this);
+            if ($(this).attr('data-itemId') == "0") {
+                $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                    $(this).remove();
+                    $.each($("#detailsTable tbody tr"), function () {
+                        if (parseFloat($(this).find('td:eq(2)').html()) > 0) {
+                            lessonCount += 1;
+                        }
+                        if (parseFloat($(this).find('td:eq(6)').html()) > 0) {
+                            lessonCount += 1;
+                        }
+                        if (parseFloat($(this).find('td:eq(10)').html())>0) {
+                            lessonCount += 1;
+                        }
+                        if (parseFloat($(this).find('td:eq(14)').html()) > 0) {
+                            lessonCount += 1;
+                        }
+                        if (parseFloat($(this).find('td:eq(18)').html()) > 0) {
+                            lessonCount += 1;
+                        }
+                      
+                    });
+                    $("#txt_lessonCount").val(lessonCount);
+                });
+            }
+        });
+        $("#saveSchedule").click(function (e) {
+            e.preventDefault();
+
+            var teatcher = $("#txt_teatcher").val();
+
+            var term = $("#txt_term").val();
+            var lessonCount = $("#txt_lessonCount").val();
+            var Scheduledet = [];
+            var table = document.getElementById('detailsTableDet');
+            var rowLength = table.rows.length;
+            for (var i = 0; i < rowLength; i += 1) {
+                var row = table.rows[i];
+
+                var day = row.cells[0].innerText;
+                var lessonNum1 = row.cells[2].innerText;
+                var subject1 = row.cells[4].innerText;
+                var lessonNum2 = row.cells[6].innerText;
+                var subject2 = row.cells[8].innerText;
+                var lessonNum3 = row.cells[10].innerText;
+                var subject3 = row.cells[12].innerText;
+                var lessonNum4 = row.cells[14].innerText;
+                var subject4 = row.cells[16].innerText;
+                var lessonNum5 = row.cells[18].innerText;
+                var subject5 = row.cells[20].innerText;
+                Scheduledet.push({ schd_Id: teatcher, schd_day: day, schd_lessonNum1: lessonNum1, schd_subject1: subject1, schd_lessonNum2: lessonNum2, schd_subject2: subject2, schd_lessonNum3: lessonNum3, schd_subject3: subject3, schd_lessonNum4: lessonNum4, schd_subject4: subject4, schd_lessonNum5: lessonNum5, schd_subject5: subject5});
+            }
+            if (Scheduledet.length > 0) {
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    url: '../Schedule/SaveSchedule?teatcher=' + teatcher + '&term=' + term + '&lessonCount=' + lessonCount + ' ',
+                    data: JSON.stringify(Scheduledet),
+                    success: function (data, textStatus, xhr) {
+                        if (data == "0") {
+                            alert("خطأ فى الاضافة اما ان المدرس تم ادخال بياناته مسبقا او ان الجدول به نفس اليوم مكرر");
+                        }
+                        else
+                            window.location.href = '/Schedule/Index';
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Error in Operation');
+                    }
+                });
+            }
+            else
+                alert("لم تقم بتعبئة جدول للمدرس");
+        });
+    </script>
+
+}

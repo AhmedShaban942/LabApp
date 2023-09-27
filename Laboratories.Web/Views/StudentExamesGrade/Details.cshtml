@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Laboratories.Domain.StudentGradesDet>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = Laboratories.Web.Resources.General.details;
+}
+
+
+<hr />
+<hr />
+
+<h4 align="center" class="panel-title ">
+    <strong style="text-align:center;color:darkblue">@Laboratories.Web.Resources.StudentRates.studentRates </strong>
+</h4>
+<hr />
+<div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+                <th>
+                    @Laboratories.Web.Resources.StudentRates.studentName
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.StudentRates.degree
+                </th>
+                <th>
+                    @Laboratories.Web.Resources.StudentRates.rate
+                </th>
+              
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.stdGD_Student.std_arName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.stdGD_degree)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.stdGD_rate)
+                    </td>
+                   
+                    <td>
+                        @Html.ActionLink(@Laboratories.Web.Resources.General.Edit, "Edit", new { studentGradesHedId = item.stdGD_studentGradesHedId, studentId = item.stdGD_studentId }, new { @class = "btn btn-primary", @target = "_blank" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+
+
+    <p>
+
+        @Html.ActionLink(@Laboratories.Web.Resources.General.backToList, "Index")
+    </p>
